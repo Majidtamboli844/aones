@@ -4,11 +4,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Hotel, ArrowLeft, MessageCircle, ShoppingCart } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Hotel, ArrowLeft, MessageCircle, ShoppingCart, Search } from "lucide-react";
 
 const ProductCategory = () => {
   const { categoryId } = useParams();
   const [selectedProducts, setSelectedProducts] = useState<number[]>([]);
+  const [searchQuery, setSearchQuery] = useState("");
   
   const categoryData = {
     "hotel-supplies": {
@@ -79,6 +81,12 @@ const ProductCategory = () => {
     return <div>Category not found</div>;
   }
 
+  // Filter products based on search query
+  const filteredProducts = category.products.filter(product =>
+    product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    product.description.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   const handleProductSelection = (productId: number, checked: boolean) => {
     if (checked) {
       setSelectedProducts(prev => [...prev, productId]);
@@ -88,15 +96,15 @@ const ProductCategory = () => {
   };
 
   const handleSelectAll = () => {
-    if (selectedProducts.length === category.products.length) {
+    if (selectedProducts.length === filteredProducts.length) {
       setSelectedProducts([]);
     } else {
-      setSelectedProducts(category.products.map(product => product.id));
+      setSelectedProducts(filteredProducts.map(product => product.id));
     }
   };
 
   const handleBulkWhatsAppInquiry = () => {
-    const selectedProductsData = category.products.filter(product => 
+    const selectedProductsData = filteredProducts.filter(product => 
       selectedProducts.includes(product.id)
     );
     
@@ -165,6 +173,24 @@ const ProductCategory = () => {
         </div>
       </section>
 
+      {/* Search Section */}
+      <section className="pb-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-lg shadow-sm border p-6 mb-8">
+            <div className="relative max-w-md mx-auto">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+              <Input
+                type="text"
+                placeholder="Search products..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10 pr-4 py-2 w-full"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Bulk Selection Controls */}
       <section className="pb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -174,11 +200,11 @@ const ProductCategory = () => {
                 <div className="flex items-center space-x-2">
                   <Checkbox 
                     id="select-all"
-                    checked={selectedProducts.length === category.products.length}
+                    checked={selectedProducts.length === filteredProducts.length && filteredProducts.length > 0}
                     onCheckedChange={handleSelectAll}
                   />
                   <label htmlFor="select-all" className="text-sm font-medium">
-                    Select All ({category.products.length} items)
+                    Select All ({filteredProducts.length} items)
                   </label>
                 </div>
                 <div className="text-sm text-gray-600">
@@ -201,42 +227,48 @@ const ProductCategory = () => {
       {/* Products Grid */}
       <section className="pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {category.products.map((product) => (
-              <Card key={product.id} className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg overflow-hidden">
-                <div className="relative h-48">
-                  <img 
-                    src={`https://images.unsplash.com/${product.image}?w=400&h=300&fit=crop`}
-                    alt={product.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <Checkbox 
-                      checked={selectedProducts.includes(product.id)}
-                      onCheckedChange={(checked) => handleProductSelection(product.id, checked as boolean)}
-                      className="bg-white border-2 border-gray-300"
+          {filteredProducts.length === 0 ? (
+            <div className="text-center py-12">
+              <p className="text-gray-500 text-lg">No products found matching your search.</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+              {filteredProducts.map((product) => (
+                <Card key={product.id} className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg overflow-hidden">
+                  <div className="relative h-48">
+                    <img 
+                      src={`https://images.unsplash.com/${product.image}?w=400&h=300&fit=crop`}
+                      alt={product.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
+                    <div className="absolute top-4 left-4">
+                      <Checkbox 
+                        checked={selectedProducts.includes(product.id)}
+                        onCheckedChange={(checked) => handleProductSelection(product.id, checked as boolean)}
+                        className="bg-white border-2 border-gray-300"
+                      />
+                    </div>
+                    <div className="absolute top-4 right-4">
+                      <Badge className="bg-green-600 text-white">{product.price}</Badge>
+                    </div>
                   </div>
-                  <div className="absolute top-4 right-4">
-                    <Badge className="bg-green-600 text-white">{product.price}</Badge>
-                  </div>
-                </div>
-                <CardHeader>
-                  <CardTitle className="text-lg">{product.name}</CardTitle>
-                  <p className="text-gray-600 text-sm">{product.description}</p>
-                </CardHeader>
-                <CardContent className="pt-0">
-                  <Button 
-                    onClick={() => handleWhatsAppInquiry(product.name)}
-                    className="w-full bg-green-600 hover:bg-green-700 text-white"
-                  >
-                    <MessageCircle className="h-4 w-4 mr-2" />
-                    Inquire on WhatsApp
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                  <CardHeader>
+                    <CardTitle className="text-lg">{product.name}</CardTitle>
+                    <p className="text-gray-600 text-sm">{product.description}</p>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <Button 
+                      onClick={() => handleWhatsAppInquiry(product.name)}
+                      className="w-full bg-green-600 hover:bg-green-700 text-white"
+                    >
+                      <MessageCircle className="h-4 w-4 mr-2" />
+                      Inquire on WhatsApp
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </div>
