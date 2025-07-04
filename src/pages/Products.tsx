@@ -76,71 +76,80 @@ const Products = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+      {/* Header with enhanced styling */}
+      <header className="bg-white/95 backdrop-blur-sm shadow-lg border-b border-gray-200/50 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <Link to="/" className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
+            <Link to="/" className="flex items-center space-x-3 group">
+              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300 group-hover:scale-105">
                 <Hotel className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-gray-900">Aone Hospitality Service</h1>
+                <h1 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">Aone Hospitality Service</h1>
                 <p className="text-sm text-gray-600">Premium Solutions Provider</p>
               </div>
             </Link>
             <nav className="hidden md:flex space-x-8">
-              <Link to="/" className="text-gray-700 hover:text-blue-600 transition-colors">Home</Link>
-              <Link to="/products" className="text-blue-600 font-medium">Products</Link>
+              <Link to="/" className="text-gray-700 hover:text-blue-600 transition-all duration-300 relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-blue-600 after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">Home</Link>
+              <Link to="/products" className="text-blue-600 font-medium relative after:content-[''] after:absolute after:w-full after:scale-x-100 after:h-0.5 after:bottom-0 after:left-0 after:bg-blue-600">Products</Link>
             </nav>
           </div>
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Our Product <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Catalog</span>
-          </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-            Discover our comprehensive range of hospitality and stationery products designed for modern businesses.
-          </p>
+      {/* Enhanced Hero Section */}
+      <section className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-indigo-600/5"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
+          <div className="animate-fade-in">
+            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              Our Product <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 animate-pulse">Catalog</span>
+            </h1>
+            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+              Discover our comprehensive range of hospitality and stationery products designed for modern businesses.
+            </p>
+            <div className="flex justify-center">
+              <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full"></div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Product Categories */}
-      <section className="py-12">
+      {/* Enhanced Product Categories */}
+      <section className="py-16 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {productCategories.map((category) => (
+            {productCategories.map((category, index) => (
               <Link key={category.id} to={`/products/${category.id}`}>
-                <Card className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg hover-scale overflow-hidden">
-                  <div className="relative h-48">
+                <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg overflow-hidden relative bg-white/90 backdrop-blur-sm hover:-translate-y-2 animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-indigo-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="relative h-48 overflow-hidden">
                     <img 
                       src={`https://images.unsplash.com/${category.image}?w=400&h=300&fit=crop`}
                       alt={category.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                     />
-                    <div className="absolute top-4 left-4">
-                      <Badge className="bg-blue-600 text-white">{category.badge}</Badge>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute top-4 left-4 transform group-hover:scale-110 transition-transform duration-300">
+                      <Badge className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg border-0 px-3 py-1">{category.badge}</Badge>
                     </div>
-                    <div className="absolute top-4 right-4">
-                      <div className="w-10 h-10 bg-white/90 rounded-full flex items-center justify-center">
-                        <category.icon className="h-5 w-5 text-blue-600" />
+                    <div className="absolute top-4 right-4 transform group-hover:rotate-12 transition-transform duration-300">
+                      <div className="w-12 h-12 bg-white/95 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300">
+                        <category.icon className="h-6 w-6 text-blue-600 group-hover:text-indigo-600 transition-colors duration-300" />
                       </div>
                     </div>
                   </div>
-                  <CardHeader>
-                    <CardTitle className="text-xl">{category.title}</CardTitle>
-                    <p className="text-gray-600">{category.description}</p>
+                  <CardHeader className="relative">
+                    <CardTitle className="text-xl group-hover:text-blue-600 transition-colors duration-300">{category.title}</CardTitle>
+                    <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">{category.description}</p>
                   </CardHeader>
-                  <CardContent className="pt-0">
+                  <CardContent className="pt-0 relative">
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-500">{category.products} Products</span>
-                      <Button size="sm" className="bg-gradient-to-r from-blue-600 to-indigo-600">
+                      <span className="text-sm text-gray-500 group-hover:text-gray-600 transition-colors duration-300">{category.products} Products</span>
+                      <Button size="sm" className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-md hover:shadow-lg transition-all duration-300 transform group-hover:scale-105">
                         View Products
+                        <ShoppingCart className="h-4 w-4 ml-1" />
                       </Button>
                     </div>
                   </CardContent>
@@ -148,6 +157,18 @@ const Products = () => {
               </Link>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Enhanced Footer Section */}
+      <section className="py-16 bg-gradient-to-r from-gray-900 via-blue-900 to-indigo-900 text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Ccircle cx="7" cy="7" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
+          <h2 className="text-3xl font-bold mb-4">Ready to Transform Your Business?</h2>
+          <p className="text-xl text-blue-100 mb-8">Get in touch with our expert team for personalized solutions</p>
+          <Button className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white px-8 py-3 text-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+            Contact Us Today
+          </Button>
         </div>
       </section>
     </div>

@@ -129,72 +129,78 @@ const ProductCategory = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+      {/* Enhanced Header */}
+      <header className="bg-white/95 backdrop-blur-sm shadow-lg border-b border-gray-200/50 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <Link to="/" className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
+            <Link to="/" className="flex items-center space-x-3 group">
+              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300 group-hover:scale-105">
                 <Hotel className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-gray-900">Aone Hospitality Service</h1>
+                <h1 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">Aone Hospitality Service</h1>
                 <p className="text-sm text-gray-600">Premium Solutions Provider</p>
               </div>
             </Link>
             <nav className="hidden md:flex space-x-8">
-              <Link to="/" className="text-gray-700 hover:text-blue-600 transition-colors">Home</Link>
+              <Link to="/" className="text-gray-700 hover:text-blue-600 transition-all duration-300 relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-blue-600 after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">Home</Link>
               <Link to="/products" className="text-blue-600 font-medium">Products</Link>
             </nav>
           </div>
         </div>
       </header>
 
-      {/* Breadcrumb */}
-      <div className="bg-white border-b">
+      {/* Enhanced Breadcrumb */}
+      <div className="bg-white/80 backdrop-blur-sm border-b border-gray-200/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <Link to="/products" className="flex items-center text-blue-600 hover:text-blue-800 transition-colors">
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Products
+          <Link to="/products" className="flex items-center text-blue-600 hover:text-blue-800 transition-all duration-300 group">
+            <ArrowLeft className="h-4 w-4 mr-2 group-hover:-translate-x-1 transition-transform duration-300" />
+            <span className="relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-blue-600 after:origin-bottom-right after:transition-transform after:duration-300 group-hover:after:scale-x-100 group-hover:after:origin-bottom-left">Back to Products</span>
           </Link>
         </div>
       </div>
 
-      {/* Category Header */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            {category.title}
-          </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-            {category.description}
-          </p>
+      {/* Enhanced Category Header */}
+      <section className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-indigo-600/5"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
+          <div className="animate-fade-in">
+            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              {category?.title}
+            </h1>
+            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+              {category?.description}
+            </p>
+            <div className="flex justify-center">
+              <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full"></div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Search Section */}
+      {/* Enhanced Search Section */}
       <section className="pb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-lg shadow-sm border p-6 mb-8">
+          <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200/50 p-8 mb-8 transform hover:scale-[1.02] transition-transform duration-300">
             <div className="relative max-w-md mx-auto">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
               <Input
                 type="text"
                 placeholder="Search products..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 pr-4 py-2 w-full"
+                className="pl-12 pr-4 py-3 w-full text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300"
               />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Bulk Selection Controls */}
+      {/* Enhanced Bulk Selection Controls */}
       <section className="pb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-lg shadow-sm border p-6 mb-8">
+          <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200/50 p-6 mb-8">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
               <div className="flex items-center space-x-4">
                 <div className="flex items-center space-x-2">
@@ -202,19 +208,20 @@ const ProductCategory = () => {
                     id="select-all"
                     checked={selectedProducts.length === filteredProducts.length && filteredProducts.length > 0}
                     onCheckedChange={handleSelectAll}
+                    className="w-5 h-5"
                   />
                   <label htmlFor="select-all" className="text-sm font-medium">
                     Select All ({filteredProducts.length} items)
                   </label>
                 </div>
-                <div className="text-sm text-gray-600">
+                <div className="text-sm text-gray-600 bg-blue-50 px-3 py-1 rounded-full">
                   {selectedProducts.length} selected
                 </div>
               </div>
               <Button 
                 onClick={handleBulkWhatsAppInquiry}
                 disabled={selectedProducts.length === 0}
-                className="bg-green-600 hover:bg-green-700 text-white"
+                className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:hover:scale-100"
               >
                 <ShoppingCart className="h-4 w-4 mr-2" />
                 Bulk Inquire on WhatsApp ({selectedProducts.length})
@@ -224,42 +231,47 @@ const ProductCategory = () => {
         </div>
       </section>
 
-      {/* Products Grid */}
+      {/* Enhanced Products Grid */}
       <section className="pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {filteredProducts.length === 0 ? (
-            <div className="text-center py-12">
-              <p className="text-gray-500 text-lg">No products found matching your search.</p>
+            <div className="text-center py-16">
+              <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-r from-blue-100 to-indigo-100 rounded-full flex items-center justify-center">
+                <Search className="h-12 w-12 text-gray-400" />
+              </div>
+              <p className="text-gray-500 text-xl">No products found matching your search.</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-              {filteredProducts.map((product) => (
-                <Card key={product.id} className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg overflow-hidden">
-                  <div className="relative h-48">
+              {filteredProducts.map((product, index) => (
+                <Card key={product.id} className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg overflow-hidden relative bg-white/90 backdrop-blur-sm hover:-translate-y-2 animate-fade-in" style={{ animationDelay: `${index * 50}ms` }}>
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-indigo-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="relative h-48 overflow-hidden">
                     <img 
                       src={`https://images.unsplash.com/${product.image}?w=400&h=300&fit=crop`}
                       alt={product.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                     />
-                    <div className="absolute top-4 left-4">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute top-4 left-4 transform group-hover:scale-110 transition-transform duration-300">
                       <Checkbox 
                         checked={selectedProducts.includes(product.id)}
                         onCheckedChange={(checked) => handleProductSelection(product.id, checked as boolean)}
-                        className="bg-white border-2 border-gray-300"
+                        className="bg-white/90 backdrop-blur-sm border-2 border-gray-300 w-5 h-5"
                       />
                     </div>
-                    <div className="absolute top-4 right-4">
-                      <Badge className="bg-green-600 text-white">{product.price}</Badge>
+                    <div className="absolute top-4 right-4 transform group-hover:scale-110 transition-transform duration-300">
+                      <Badge className="bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-lg border-0 px-3 py-1">{product.price}</Badge>
                     </div>
                   </div>
-                  <CardHeader>
-                    <CardTitle className="text-lg">{product.name}</CardTitle>
-                    <p className="text-gray-600 text-sm">{product.description}</p>
+                  <CardHeader className="relative">
+                    <CardTitle className="text-lg group-hover:text-blue-600 transition-colors duration-300">{product.name}</CardTitle>
+                    <p className="text-gray-600 text-sm group-hover:text-gray-700 transition-colors duration-300">{product.description}</p>
                   </CardHeader>
-                  <CardContent className="pt-0">
+                  <CardContent className="pt-0 relative">
                     <Button 
                       onClick={() => handleWhatsAppInquiry(product.name)}
-                      className="w-full bg-green-600 hover:bg-green-700 text-white"
+                      className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                     >
                       <MessageCircle className="h-4 w-4 mr-2" />
                       Inquire on WhatsApp
