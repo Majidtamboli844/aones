@@ -1,12 +1,14 @@
-
+import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Hotel, ArrowLeft, MessageCircle } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Hotel, ArrowLeft, MessageCircle, ShoppingCart } from "lucide-react";
 
 const ProductCategory = () => {
   const { categoryId } = useParams();
+  const [selectedProducts, setSelectedProducts] = useState<number[]>([]);
   
   const categoryData = {
     "hotel-supplies": {
@@ -20,7 +22,7 @@ const ProductCategory = () => {
       ]
     },
     "restaurant-equipment": {
-      title: "Restaurant Equipment",
+      title: "Restaurant Equipment", 
       description: "Professional kitchen equipment and dining solutions",
       products: [
         { id: 5, name: "Commercial Kitchen Set", price: "$1,299", image: "photo-1488590528505-98d2b5aba04b", description: "Complete commercial kitchen equipment package" },
@@ -77,6 +79,41 @@ const ProductCategory = () => {
     return <div>Category not found</div>;
   }
 
+  const handleProductSelection = (productId: number, checked: boolean) => {
+    if (checked) {
+      setSelectedProducts(prev => [...prev, productId]);
+    } else {
+      setSelectedProducts(prev => prev.filter(id => id !== productId));
+    }
+  };
+
+  const handleSelectAll = () => {
+    if (selectedProducts.length === category.products.length) {
+      setSelectedProducts([]);
+    } else {
+      setSelectedProducts(category.products.map(product => product.id));
+    }
+  };
+
+  const handleBulkWhatsAppInquiry = () => {
+    const selectedProductsData = category.products.filter(product => 
+      selectedProducts.includes(product.id)
+    );
+    
+    if (selectedProductsData.length === 0) {
+      alert("Please select at least one product to inquire about.");
+      return;
+    }
+
+    const productList = selectedProductsData.map(product => 
+      `• ${product.name} (${product.price})`
+    ).join('\n');
+
+    const message = `Hi! I'm interested in the following products from Aone Hospitality Service:\n\n${productList}\n\nCould you please provide more details and pricing information for these items?`;
+    const whatsappUrl = `https://wa.me/15551234567?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
   const handleWhatsAppInquiry = (productName: string) => {
     const message = `Hi! I'm interested in the ${productName} from Aone Hospitality Service. Could you please provide more details and pricing information?`;
     const whatsappUrl = `https://wa.me/15551234567?text=${encodeURIComponent(message)}`;
@@ -128,6 +165,39 @@ const ProductCategory = () => {
         </div>
       </section>
 
+      {/* Bulk Selection Controls */}
+      <section className="pb-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-lg shadow-sm border p-6 mb-8">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+              <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-2">
+                  <Checkbox 
+                    id="select-all"
+                    checked={selectedProducts.length === category.products.length}
+                    onCheckedChange={handleSelectAll}
+                  />
+                  <label htmlFor="select-all" className="text-sm font-medium">
+                    Select All ({category.products.length} items)
+                  </label>
+                </div>
+                <div className="text-sm text-gray-600">
+                  {selectedProducts.length} selected
+                </div>
+              </div>
+              <Button 
+                onClick={handleBulkWhatsAppInquiry}
+                disabled={selectedProducts.length === 0}
+                className="bg-green-600 hover:bg-green-700 text-white"
+              >
+                <ShoppingCart className="h-4 w-4 mr-2" />
+                Bulk Inquire on WhatsApp ({selectedProducts.length})
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Products Grid */}
       <section className="pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -140,6 +210,13 @@ const ProductCategory = () => {
                     alt={product.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
+                  <div className="absolute top-4 left-4">
+                    <Checkbox 
+                      checked={selectedProducts.includes(product.id)}
+                      onCheckedChange={(checked) => handleProductSelection(product.id, checked as boolean)}
+                      className="bg-white border-2 border-gray-300"
+                    />
+                  </div>
                   <div className="absolute top-4 right-4">
                     <Badge className="bg-green-600 text-white">{product.price}</Badge>
                   </div>
