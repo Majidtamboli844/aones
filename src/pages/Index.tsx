@@ -1,7 +1,7 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
 import { 
   Hotel, 
   Utensils, 
@@ -27,7 +27,7 @@ const Index = () => {
     },
     {
       icon: Utensils,
-      title: "Restaurant Equipment",
+      title: "Restaurant Equipment", 
       description: "Professional kitchen equipment, dining furniture, and tableware for restaurants and cafes."
     },
     {
@@ -87,7 +87,7 @@ const Index = () => {
             </div>
             <nav className="hidden md:flex space-x-8">
               <a href="#services" className="text-gray-700 hover:text-blue-600 transition-colors">Services</a>
-              <a href="#products" className="text-gray-700 hover:text-blue-600 transition-colors">Products</a>
+              <Link to="/products" className="text-gray-700 hover:text-blue-600 transition-colors">Products</Link>
               <a href="#about" className="text-gray-700 hover:text-blue-600 transition-colors">About</a>
               <a href="#contact" className="text-gray-700 hover:text-blue-600 transition-colors">Contact</a>
             </nav>
@@ -114,9 +114,11 @@ const Index = () => {
               Quality, reliability, and exceptional service - that's our commitment to you.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-8 py-3">
-                Explore Products
-              </Button>
+              <Link to="/products">
+                <Button size="lg" className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-8 py-3">
+                  Explore Products
+                </Button>
+              </Link>
               <Button size="lg" variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-3">
                 Contact Us Today
               </Button>
@@ -195,6 +197,13 @@ const Index = () => {
                         <span className="text-gray-700 font-medium">{item}</span>
                       </div>
                     ))}
+                  </div>
+                  <div className="mt-6 text-center">
+                    <Link to="/products">
+                      <Button className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white">
+                        View All Products
+                      </Button>
+                    </Link>
                   </div>
                 </CardContent>
               </Card>
@@ -319,7 +328,7 @@ const Index = () => {
               <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
               <ul className="space-y-2 text-gray-300">
                 <li><a href="#services" className="hover:text-blue-400 transition-colors">Services</a></li>
-                <li><a href="#products" className="hover:text-blue-400 transition-colors">Products</a></li>
+                <li><Link to="/products" className="hover:text-blue-400 transition-colors">Products</Link></li>
                 <li><a href="#about" className="hover:text-blue-400 transition-colors">About Us</a></li>
                 <li><a href="#contact" className="hover:text-blue-400 transition-colors">Contact</a></li>
               </ul>
