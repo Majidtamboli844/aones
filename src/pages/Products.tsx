@@ -76,70 +76,112 @@ const Products = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 animate-gradient">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b">
+      <header className="bg-white/80 backdrop-blur-lg shadow-lg border-b border-white/20 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link to="/" className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
-                <Hotel className="h-6 w-6 text-white" />
+          <div className="flex justify-between items-center h-20">
+            <Link to="/" className="flex items-center space-x-4 group">
+              <div className="w-12 h-12 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+                <Hotel className="h-7 w-7 text-white" />
               </div>
-              <div>
-                <h1 className="text-xl font-bold text-gray-900">Aone Hospitality Service</h1>
-                <p className="text-sm text-gray-600">Premium Solutions Provider</p>
+              <div className="transition-all duration-300 group-hover:translate-x-1">
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+                  Aone Hospitality Service
+                </h1>
+                <p className="text-sm text-gray-600 font-medium">Premium Solutions Provider</p>
               </div>
             </Link>
-            <nav className="hidden md:flex space-x-8">
-              <Link to="/" className="text-gray-700 hover:text-blue-600 transition-colors">Home</Link>
-              <Link to="/products" className="text-blue-600 font-medium">Products</Link>
+            <nav className="hidden md:flex space-x-10">
+              <Link 
+                to="/" 
+                className="text-gray-700 hover:text-blue-600 transition-all duration-300 font-medium relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-600 after:transition-all after:duration-300 hover:after:w-full"
+              >
+                Home
+              </Link>
+              <Link 
+                to="/products" 
+                className="text-blue-600 font-semibold relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-blue-600"
+              >
+                Products
+              </Link>
             </nav>
           </div>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Our Product <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Catalog</span>
-          </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-            Discover our comprehensive range of hospitality and stationery products designed for modern businesses.
-          </p>
+      <section className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-indigo-600/10"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <div className="animate-fade-in-up">
+            <h1 className="text-5xl md:text-7xl font-bold mb-8">
+              <span className="bg-gradient-to-r from-gray-900 via-blue-900 to-indigo-900 bg-clip-text text-transparent">
+                Our Product
+              </span>
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 animate-gradient-x">
+                Catalog
+              </span>
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed font-light">
+              Discover our comprehensive range of hospitality and stationery products designed for modern businesses seeking excellence.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Product Categories */}
-      <section className="py-12">
+      <section className="py-16 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {productCategories.map((category) => (
-              <Link key={category.id} to={`/products/${category.id}`}>
-                <Card className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg hover-scale overflow-hidden">
-                  <div className="relative h-48">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {productCategories.map((category, index) => (
+              <Link 
+                key={category.id} 
+                to={`/products/${category.id}`}
+                className="animate-fade-in-up"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:scale-105 overflow-hidden bg-white/90 backdrop-blur-sm hover:bg-white relative">
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-indigo-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  
+                  <div className="relative h-56">
                     <img 
-                      src={`https://images.unsplash.com/${category.image}?w=400&h=300&fit=crop`}
+                      src={`https://images.unsplash.com/${category.image}?w=500&h=400&fit=crop&auto=format`}
                       alt={category.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     />
-                    <div className="absolute top-4 left-4">
-                      <Badge className="bg-blue-600 text-white">{category.badge}</Badge>
+                    
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent group-hover:from-black/60 transition-all duration-500"></div>
+                    
+                    <div className="absolute top-6 left-6">
+                      <Badge className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg border-0 px-4 py-1.5 font-semibold">
+                        {category.badge}
+                      </Badge>
                     </div>
-                    <div className="absolute top-4 right-4">
-                      <div className="w-10 h-10 bg-white/90 rounded-full flex items-center justify-center">
-                        <category.icon className="h-5 w-5 text-blue-600" />
+                    
+                    <div className="absolute top-6 right-6">
+                      <div className="w-12 h-12 bg-white/95 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+                        <category.icon className="h-6 w-6 text-blue-600" />
                       </div>
                     </div>
                   </div>
-                  <CardHeader>
-                    <CardTitle className="text-xl">{category.title}</CardTitle>
-                    <p className="text-gray-600">{category.description}</p>
+
+                  <CardHeader className="pb-4 relative z-10">
+                    <CardTitle className="text-2xl font-bold text-gray-900 group-hover:text-blue-900 transition-colors duration-300">
+                      {category.title}
+                    </CardTitle>
+                    <p className="text-gray-600 text-base leading-relaxed font-medium">
+                      {category.description}
+                    </p>
                   </CardHeader>
-                  <CardContent className="pt-0">
+
+                  <CardContent className="pt-0 relative z-10">
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-500">{category.products} Products</span>
-                      <Button size="sm" className="bg-gradient-to-r from-blue-600 to-indigo-600">
+                      <span className="text-sm text-gray-500 font-medium bg-gray-100 px-3 py-1 rounded-full">
+                        {category.products} Products
+                      </span>
+                      <Button className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105 font-semibold px-6">
                         View Products
                       </Button>
                     </div>
@@ -150,6 +192,9 @@ const Products = () => {
           </div>
         </div>
       </section>
+
+      {/* Bottom spacing */}
+      <div className="h-20"></div>
     </div>
   );
 };
