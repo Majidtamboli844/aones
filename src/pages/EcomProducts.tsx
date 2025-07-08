@@ -28,8 +28,8 @@ const EcomProducts = () => {
     {
       id: 1,
       name: "Premium Wireless Headphones",
-      price: 199,
-      originalPrice: 299,
+      price: 16517,
+      originalPrice: 24825,
       rating: 4.5,
       reviews: 1250,
       image: "photo-1581090464777-f3220bbe1b8b",
@@ -39,8 +39,8 @@ const EcomProducts = () => {
     {
       id: 2,
       name: "Smart Watch Pro",
-      price: 399,
-      originalPrice: 499,
+      price: 33117,
+      originalPrice: 41417,
       rating: 4.8,
       reviews: 890,
       image: "photo-1434494878577-86c23bcb06b9",
@@ -50,8 +50,8 @@ const EcomProducts = () => {
     {
       id: 3,
       name: "Professional Camera",
-      price: 899,
-      originalPrice: 1199,
+      price: 74617,
+      originalPrice: 99517,
       rating: 4.7,
       reviews: 456,
       image: "photo-1518005020951-eccb494ad742",
@@ -61,8 +61,8 @@ const EcomProducts = () => {
     {
       id: 4,
       name: "Gaming Laptop",
-      price: 1299,
-      originalPrice: 1599,
+      price: 107817,
+      originalPrice: 132717,
       rating: 4.6,
       reviews: 234,
       image: "photo-1488590528505-98d2b5aba04b",
@@ -72,8 +72,8 @@ const EcomProducts = () => {
     {
       id: 5,
       name: "Smartphone Pro Max",
-      price: 999,
-      originalPrice: 1199,
+      price: 82917,
+      originalPrice: 99517,
       rating: 4.4,
       reviews: 2341,
       image: "photo-1498050108023-c5249f4df085",
@@ -83,8 +83,8 @@ const EcomProducts = () => {
     {
       id: 6,
       name: "Home Theater System",
-      price: 799,
-      originalPrice: 1099,
+      price: 66317,
+      originalPrice: 91217,
       rating: 4.3,
       reviews: 567,
       image: "photo-1721322800607-8c38375eef04",
@@ -103,11 +103,11 @@ const EcomProducts = () => {
   ];
 
   const priceRanges = [
-    "Under $100",
-    "$100 - $300",
-    "$300 - $500", 
-    "$500 - $1000",
-    "Over $1000"
+    "Under ₹8,300",
+    "₹8,300 - ₹24,900",
+    "₹24,900 - ₹41,500", 
+    "₹41,500 - ₹83,000",
+    "Over ₹83,000"
   ];
 
   return (
@@ -312,8 +312,8 @@ const EcomProducts = () => {
                       </div>
                       <div className="flex items-center justify-between mb-4">
                         <div>
-                          <span className="text-2xl font-bold text-gray-900">${product.price}</span>
-                          <span className="text-sm text-gray-500 line-through ml-2">${product.originalPrice}</span>
+                          <span className="text-2xl font-bold text-gray-900">₹{product.price.toLocaleString('en-IN')}</span>
+                          <span className="text-sm text-gray-500 line-through ml-2">₹{product.originalPrice.toLocaleString('en-IN')}</span>
                         </div>
                       </div>
                       <Button className="w-full bg-blue-600 hover:bg-blue-700">

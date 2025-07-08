@@ -28,8 +28,8 @@ const ProductDetail = () => {
   const product = {
     id: 1,
     name: "Premium Wireless Headphones",
-    price: 199,
-    originalPrice: 299,
+    price: 16517,
+    originalPrice: 24825,
     rating: 4.5,
     reviews: 1250,
     images: [
@@ -64,13 +64,13 @@ const ProductDetail = () => {
     {
       id: 2,
       name: "Wireless Earbuds Pro",
-      price: 149,
+      price: 12367,
       image: "photo-1484704849700-f032a568e944"
     },
     {
       id: 3,
       name: "Gaming Headset",
-      price: 99,
+      price: 8217,
       image: "photo-1583394838336-acd977736f90"
     }
   ];
@@ -189,10 +189,10 @@ const ProductDetail = () => {
               </div>
 
               <div className="flex items-center space-x-4 mb-6">
-                <span className="text-3xl font-bold text-gray-900">${product.price}</span>
-                <span className="text-xl text-gray-500 line-through">${product.originalPrice}</span>
+                <span className="text-3xl font-bold text-gray-900">₹{product.price.toLocaleString('en-IN')}</span>
+                <span className="text-xl text-gray-500 line-through">₹{product.originalPrice.toLocaleString('en-IN')}</span>
                 <Badge className="bg-green-100 text-green-800">
-                  Save ${product.originalPrice - product.price}
+                  Save ₹{(product.originalPrice - product.price).toLocaleString('en-IN')}
                 </Badge>
               </div>
 
@@ -360,7 +360,7 @@ const ProductDetail = () => {
                   />
                   <CardContent className="p-4">
                     <h3 className="font-semibold text-gray-900 mb-2">{product.name}</h3>
-                    <span className="text-xl font-bold text-gray-900">${product.price}</span>
+                    <span className="text-xl font-bold text-gray-900">₹{product.price.toLocaleString('en-IN')}</span>
                   </CardContent>
                 </Card>
               </Link>

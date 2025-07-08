@@ -20,14 +20,14 @@ const Cart = () => {
     {
       id: 1,
       name: "Premium Wireless Headphones",
-      price: 199,
+      price: 16517,
       quantity: 1,
       image: "photo-1581090464777-f3220bbe1b8b"
     },
     {
       id: 2,
       name: "Smart Watch Pro",
-      price: 399,
+      price: 33117,
       quantity: 2,
       image: "photo-1434494878577-86c23bcb06b9"
     }
@@ -50,8 +50,8 @@ const Cart = () => {
   };
 
   const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-  const shipping = subtotal > 50 ? 0 : 10;
-  const tax = subtotal * 0.08;
+  const shipping = subtotal > 4150 ? 0 : 830; // Free shipping over ₹4,150 (equivalent to $50)
+  const tax = subtotal * 0.18; // GST 18%
   const total = subtotal + shipping + tax;
 
   return (
@@ -132,7 +132,7 @@ const Cart = () => {
                             </Button>
                           </div>
                           <span className="text-lg font-semibold text-gray-900">
-                            ${item.price * item.quantity}
+                            ₹{(item.price * item.quantity).toLocaleString('en-IN')}
                           </span>
                         </div>
                       </div>
@@ -159,22 +159,22 @@ const Cart = () => {
                 <CardContent className="space-y-4">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Subtotal</span>
-                    <span className="font-semibold">${subtotal.toFixed(2)}</span>
+                    <span className="font-semibold">₹{subtotal.toLocaleString('en-IN')}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Shipping</span>
                     <span className="font-semibold">
-                      {shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}
+                      {shipping === 0 ? 'Free' : `₹${shipping.toLocaleString('en-IN')}`}
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Tax</span>
-                    <span className="font-semibold">${tax.toFixed(2)}</span>
+                    <span className="text-gray-600">GST (18%)</span>
+                    <span className="font-semibold">₹{Math.round(tax).toLocaleString('en-IN')}</span>
                   </div>
                   <div className="border-t pt-4">
                     <div className="flex justify-between text-lg font-bold">
                       <span>Total</span>
-                      <span>${total.toFixed(2)}</span>
+                      <span>₹{Math.round(total).toLocaleString('en-IN')}</span>
                     </div>
                   </div>
                 </CardContent>
@@ -202,7 +202,7 @@ const Cart = () => {
                   <div className="flex items-center space-x-3 text-sm text-gray-600">
                     <Truck className="h-5 w-5 text-green-600" />
                     <span>
-                      {shipping === 0 ? 'Free shipping on this order!' : 'Add $' + (50 - subtotal).toFixed(2) + ' more for free shipping'}
+                      {shipping === 0 ? 'Free shipping on this order!' : `Add ₹${(4150 - subtotal).toLocaleString('en-IN')} more for free shipping`}
                     </span>
                   </div>
                 </CardContent>

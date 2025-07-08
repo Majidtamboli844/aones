@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -17,60 +18,60 @@ const ProductCategory = () => {
       title: "Hotel Supplies",
       description: "Premium bedding, towels, and room essentials for luxury hospitality experiences",
       products: [
-        { id: 1, name: "Premium Bed Sheets Set", price: "$89", image: "photo-1649972904349-6e44c42644a7", description: "100% Egyptian cotton bed sheets with 400 thread count" },
-        { id: 2, name: "Luxury Bath Towels", price: "$45", image: "photo-1721322800607-8c38375eef04", description: "Ultra-soft cotton towels, hotel quality" },
-        { id: 3, name: "Hotel Room Amenities Kit", price: "$25", image: "photo-1518770660439-4636190af475", description: "Complete amenities set for guest rooms" },
-        { id: 4, name: "Pillow Collection", price: "$35", image: "photo-1486312338219-ce68d2c6f44d", description: "Memory foam and down alternative pillows" },
+        { id: 1, name: "Premium Bed Sheets Set", price: "₹7,387", image: "photo-1649972904349-6e44c42644a7", description: "100% Egyptian cotton bed sheets with 400 thread count" },
+        { id: 2, name: "Luxury Bath Towels", price: "₹3,735", image: "photo-1721322800607-8c38375eef04", description: "Ultra-soft cotton towels, hotel quality" },
+        { id: 3, name: "Hotel Room Amenities Kit", price: "₹2,075", image: "photo-1518770660439-4636190af475", description: "Complete amenities set for guest rooms" },
+        { id: 4, name: "Pillow Collection", price: "₹2,905", image: "photo-1486312338219-ce68d2c6f44d", description: "Memory foam and down alternative pillows" },
       ]
     },
     "restaurant-equipment": {
       title: "Restaurant Equipment", 
       description: "Professional kitchen equipment and dining solutions",
       products: [
-        { id: 5, name: "Commercial Kitchen Set", price: "$1,299", image: "photo-1488590528505-98d2b5aba04b", description: "Complete commercial kitchen equipment package" },
-        { id: 6, name: "Dining Table Set", price: "$599", image: "photo-1461749280684-dccba630e2f6", description: "Professional dining furniture for restaurants" },
-        { id: 7, name: "Chef Knife Collection", price: "$189", image: "photo-1518005020951-eccb494ad742", description: "Professional grade kitchen knives" },
-        { id: 8, name: "Food Storage Solutions", price: "$145", image: "photo-1486718448742-163732cd1544", description: "Commercial food storage containers" },
+        { id: 5, name: "Commercial Kitchen Set", price: "₹1,07,817", image: "photo-1488590528505-98d2b5aba04b", description: "Complete commercial kitchen equipment package" },
+        { id: 6, name: "Dining Table Set", price: "₹49,717", image: "photo-1461749280684-dccba630e2f6", description: "Professional dining furniture for restaurants" },
+        { id: 7, name: "Chef Knife Collection", price: "₹15,687", image: "photo-1518005020951-eccb494ad742", description: "Professional grade kitchen knives" },
+        { id: 8, name: "Food Storage Solutions", price: "₹12,035", image: "photo-1486718448742-163732cd1544", description: "Commercial food storage containers" },
       ]
     },
     "beverage-solutions": {
       title: "Beverage Solutions",
       description: "Coffee machines and beverage equipment for hospitality venues",
       products: [
-        { id: 9, name: "Commercial Coffee Machine", price: "$2,599", image: "photo-1581090464777-f3220bbe1b8b", description: "Professional espresso machine for high volume" },
-        { id: 10, name: "Tea Service Set", price: "$89", image: "photo-1498050108023-c5249f4df085", description: "Complete tea service with premium accessories" },
-        { id: 11, name: "Beverage Dispenser", price: "$299", image: "photo-1434494878577-86c23bcb06b9", description: "Stainless steel beverage dispensing system" },
-        { id: 12, name: "Bar Equipment Kit", price: "$459", image: "photo-1581092795360-fd1ca04f0952", description: "Professional bar tools and accessories" },
+        { id: 9, name: "Commercial Coffee Machine", price: "₹2,15,717", image: "photo-1581090464777-f3220bbe1b8b", description: "Professional espresso machine for high volume" },
+        { id: 10, name: "Tea Service Set", price: "₹7,387", image: "photo-1498050108023-c5249f4df085", description: "Complete tea service with premium accessories" },
+        { id: 11, name: "Beverage Dispenser", price: "₹24,817", image: "photo-1434494878577-86c23bcb06b9", description: "Stainless steel beverage dispensing system" },
+        { id: 12, name: "Bar Equipment Kit", price: "₹38,097", image: "photo-1581092795360-fd1ca04f0952", description: "Professional bar tools and accessories" },
       ]
     },
     "office-stationery": {
       title: "Office Stationery",
       description: "High-quality paper products and office supplies",
       products: [
-        { id: 13, name: "Premium Paper Bundle", price: "$45", image: "photo-1483058712412-4245e9b90334", description: "High-quality printing and writing paper" },
-        { id: 14, name: "Executive Pen Set", price: "$129", image: "photo-1487887235947-a955ef187fcc", description: "Luxury writing instruments collection" },
-        { id: 15, name: "Office Organizer Set", price: "$79", image: "photo-1472396961693-142e6e269027", description: "Desktop organization solutions" },
-        { id: 16, name: "Filing Cabinet System", price: "$299", image: "photo-1433086966358-54859d0ed716", description: "Professional document storage system" },
+        { id: 13, name: "Premium Paper Bundle", price: "₹3,735", image: "photo-1483058712412-4245e9b90334", description: "High-quality printing and writing paper" },
+        { id: 14, name: "Executive Pen Set", price: "₹10,707", image: "photo-1487887235947-a955ef187fcc", description: "Luxury writing instruments collection" },
+        { id: 15, name: "Office Organizer Set", price: "₹6,557", image: "photo-1472396961693-142e6e269027", description: "Desktop organization solutions" },
+        { id: 16, name: "Filing Cabinet System", price: "₹24,817", image: "photo-1433086966358-54859d0ed716", description: "Professional document storage system" },
       ]
     },
     "custom-packaging": {
       title: "Custom Packaging",
       description: "Branded packaging solutions and promotional materials",
       products: [
-        { id: 17, name: "Custom Branded Boxes", price: "$2.50/unit", image: "photo-1465146344425-f00d5f5c8f07", description: "Custom printed packaging boxes" },
-        { id: 18, name: "Promotional Bags", price: "$3.99/unit", image: "photo-1482938289607-e9573fc25ebb", description: "Branded shopping and gift bags" },
-        { id: 19, name: "Marketing Materials", price: "$199", image: "photo-1509316975850-ff9c5deb0cd9", description: "Complete branding package with materials" },
-        { id: 20, name: "Gift Wrapping Set", price: "$89", image: "photo-1513836279014-a89f7a76ae86", description: "Professional gift wrapping solutions" },
+        { id: 17, name: "Custom Branded Boxes", price: "₹207/unit", image: "photo-1465146344425-f00d5f5c8f07", description: "Custom printed packaging boxes" },
+        { id: 18, name: "Promotional Bags", price: "₹331/unit", image: "photo-1482938289607-e9573fc25ebb", description: "Branded shopping and gift bags" },
+        { id: 19, name: "Marketing Materials", price: "₹16,517", image: "photo-1509316975850-ff9c5deb0cd9", description: "Complete branding package with materials" },
+        { id: 20, name: "Gift Wrapping Set", price: "₹7,387", image: "photo-1513836279014-a89f7a76ae86", description: "Professional gift wrapping solutions" },
       ]
     },
     "bedding-linens": {
       title: "Bedding & Linens",
       description: "Luxury bedding sets and hotel linens",
       products: [
-        { id: 21, name: "Luxury Comforter Set", price: "$199", image: "photo-1518495973542-4542c06a5843", description: "Premium down alternative comforter with pillows" },
-        { id: 22, name: "Hotel Linen Package", price: "$299", image: "photo-1469474968028-56623f02e42e", description: "Complete hotel room linen package" },
-        { id: 23, name: "Decorative Pillows", price: "$45", image: "photo-1470813740244-df37b8c1edcb", description: "Elegant decorative pillows for hospitality" },
-        { id: 24, name: "Mattress Protectors", price: "$65", image: "photo-1470071459604-3b5ec3a7fe05", description: "Waterproof mattress protection covers" },
+        { id: 21, name: "Luxury Comforter Set", price: "₹16,517", image: "photo-1518495973542-4542c06a5843", description: "Premium down alternative comforter with pillows" },
+        { id: 22, name: "Hotel Linen Package", price: "₹24,817", image: "photo-1469474968028-56623f02e42e", description: "Complete hotel room linen package" },
+        { id: 23, name: "Decorative Pillows", price: "₹3,735", image: "photo-1470813740244-df37b8c1edcb", description: "Elegant decorative pillows for hospitality" },
+        { id: 24, name: "Mattress Protectors", price: "₹5,395", image: "photo-1470071459604-3b5ec3a7fe05", description: "Waterproof mattress protection covers" },
       ]
     }
   };
