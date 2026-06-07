@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aone Hospitality Services</title>
+    <!-- Favicon and meta tags -->
+    <link rel="icon" type="image/png" href="logo.png">
+   
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        /* Custom styles for professional appearance and functionality */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Scroll behavior for smooth navigation */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Styles for the floating action buttons (WhatsApp, Call) */
+        .whatsapp_float, .call_float {
+            position: fixed;
+            bottom: 40px;
+            z-index: 100;
+        }
+        .whatsapp_float {
+            right: 20px;
+        }
+        .call_float {
+            left: 20px;
+        }
+
+        /* Back to top button styling and animation */
+        #back-to-top {
+            display: none;
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 99;
+            border: none;
+            outline: none;
+            background-color: #0d9488;
+            color: white;
+            cursor: pointer;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+        }
+        #back-to-top:hover {
+            background-color: #0f766e;
+            transform: translateY(-2px);
+        }
+
+        /* Styles for the cart sidebar */
+        #cart-sidebar {
+            right: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header & Navigation -->
+     <header class="bg-white shadow-sm py-4 fixed top-0 w-full z-50">
+        <nav class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="logo.png" alt="Aone Hospitality Services Logo" class="h-10 w-10">
+          <div>
+            <div class="text-lg font-bold text-teal-700">Aone Hospitality Services</div>
+            <div class="text-xs text-gray-500">Wholesale | Corporate Supplies</div>
+          </div>
+            </a>
+                <div class="flex items-center space-x-4">
+                    <button id="cart-button-mobile" class="md:hidden relative p-2 rounded-full bg-gray-200 text-gray-600 hover:bg-gray-300 transition-colors" aria-label="Open Shopping Cart">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                        <span id="cart-count-mobile" class="hidden absolute top-0 right-0 -mt-2 -mr-2 flex items-center justify-center h-5 w-5 rounded-full bg-red-600 text-white text-xs font-bold">0</span>
+                    </button>
+                    <button id="mobile-menu-button" class="md:hidden text-gray-600 hover:text-teal-600 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 transition duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                    </button>
+                </div>
+            
+
+
+
+            <!-- Main Nav Links and Desktop Cart Button -->
+            <div class="hidden md:flex space-x-8 items-center order-3">
+                <a href="index.html" class="text-gray-600 hover:text-teal-600 font-medium transition duration-300 rounded-md p-2">Home</a>
+                <a href="product.html" class="text-gray-600 hover:text-teal-600 font-medium transition duration-300 rounded-md p-2">Products</a>
+                <a href="about.html" class="text-gray-600 hover:text-teal-600 font-medium transition duration-300 rounded-md p-2">About</a>
+                <a href="contact.html" class="text-gray-600 hover:text-teal-600 font-medium transition duration-300 rounded-md p-2">Contact Us</a>
+                <button id="cart-button" class="relative p-2 rounded-full bg-gray-200 text-gray-600 hover:bg-gray-300 transition-colors" aria-label="Open Shopping Cart">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                    <span id="cart-count" class="hidden absolute top-0 right-0 -mt-2 -mr-2 flex items-center justify-center h-5 w-5 rounded-full bg-red-600 text-white text-xs font-bold">0</span>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg py-4 border-t border-gray-200">
+                <a href="index.html" class="text-gray-600 hover:text-teal-600 font-medium transition duration-300 rounded-md p-2">Home</a>
+                <a href="product.html" class="text-gray-600 hover:text-teal-600 font-medium transition duration-300 rounded-md p-2">Products</a>
+                <a href="about.html" class="text-gray-600 hover:text-teal-600 font-medium transition duration-300 rounded-md p-2">About</a>
+                <a href="contact.html" class="text-gray-600 hover:text-teal-600 font-medium transition duration-300 rounded-md p-2">Contact Us</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+<section id="hero" class="relative text-white py-24 md:py-36 mt-16 overflow-hidden">
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('abc.png');"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-blue-700 to-teal-800 opacity-80"></div>
+    <div class="container mx-auto px-4 text-center relative z-10">
+            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 animate-fade-in-up">
+                Experience Top Quality <span class="text-yellow-300">Stationary Products</span>
+            </h1>
+            
+            <p class="text-lg md:text-xl max-w-2xl mx-auto mb-10 opacity-100 ">
+               Special Rate Only For Quality Housekeeping Material Supplier.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#products" class="inline-block bg-white text-teal-700 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 hover:scale-105 transition duration-300 transform animate-fade-in-up delay-400">
+                    Explore Our Products
+                </a>
+                <button id="enquireNowButton" class="inline-block bg-yellow-400 text-gray-900 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-yellow-500 hover:scale-105 transition duration-300 transform animate-fade-in-up delay-500">
+                    View Cart
+                </button>
+                            <!-- Search Bar moved to Hero Section -->
+            <div class="relative w-full max-w-xl mx-auto mt-8">
+                <input type="text" id="product-search" placeholder="Search products..." class="w-full pl-10 pr-4 py-2 rounded-full bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </div>
+            </div>
+        </div>
+        
+    </section>
+
+    <!-- Products Section with integrated cart functionality -->
+    <main id="products" class="container mx-auto px-4 py-12">
+        <h2 class="text-4xl font-extrabold text-gray-900 mb-8 text-center">Featured Products</h2>
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Product cards will be injected here by JavaScript -->
+        </div>
+    </main>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="fixed h-full w-full md:w-96 bg-gray-50 shadow-xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out">
+        <div class="p-6 flex items-center justify-between border-b border-gray-200">
+            <h2 class="text-2xl font-bold text-gray-800">Your Cart</h2>
+            <button id="close-cart-button" class="text-gray-500 hover:text-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+        </div>
+        <div id="cart-items-container" class="p-6 h-full overflow-y-auto pb-40">
+            <!-- Cart items will be injected here by JavaScript -->
+        </div>
+        <div id="cart-summary" class="absolute bottom-0 left-0 right-0 p-6 bg-white border-t border-gray-200 shadow-lg flex flex-col items-stretch space-y-3 hidden">
+            <div class="flex justify-between items-center text-lg font-bold text-gray-800">
+                <span>Total:</span>
+                <span id="cart-total">₹0.00</span>
+            </div>
+            <a id="email-checkout-link" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center space-x-2 w-full bg-red-600 text-white py-3 rounded-lg font-bold text-lg transition-colors duration-300 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                <span>Checkout with Email</span>
+            </a>
+            <a id="whatsapp-checkout-link" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center space-x-2 w-full bg-green-600 text-white py-3 rounded-lg font-bold text-lg transition-colors duration-300 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V3a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                <span>Checkout with WhatsApp</span>
+            </a>
+        </div>
+    </div>
+    
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-extrabold mb-4 text-gray-900">About Us</h2>
+            <p class="text-lg max-w-2xl mx-auto text-gray-600">
+                Aone Hospitality Services is committed to providing top-quality stationary and hospitality products. Our mission is to offer premium brands at wholesale prices, delivering exceptional value directly from the manufacturer to you.
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-gradient-to-r from-teal-600 to-blue-600 text-white py-16 md:py-24 text-center">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Experience the Aone Difference?</h2>
+            <p class="text-lg md:text-xl max-w-2xl mx-auto mb-10 opacity-90">
+                Get in touch with us today to learn more about our products or to place an order.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="mailto:aonehospitalitys@gmail.com" class="inline-flex items-center justify-center bg-white text-teal-700 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 hover:scale-105 transition duration-300 transform">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    Email Us
+                </a>
+                <a href="https://wa.me/919867531298" class="inline-flex items-center justify-center border-2 border-white text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-white hover:text-teal-700 hover:scale-105 transition duration-300 transform">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    WhatsApp Us
+                </a>
+                <a href="tel:+917387869062" class="inline-flex items-center justify-center border-2 border-white text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-white hover:text-teal-700 hover:scale-105 transition duration-300 transform">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-3.95-3.95A19.79 19.79 0 0 1 2.05 4.18 2 2 0 0 1 4.05 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                    Call Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-10">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <a href="#hero" class="text-xl font-bold text-teal-400 flex items-center mb-4 md:mb-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                    Aone Hospitality Services
+                </a>
+                <div class="flex flex-wrap justify-center gap-x-8 gap-y-2 mb-4 md:mb-0">
+                    <a href="#about" class="hover:text-white transition duration-300">About</a>
+                    <a href="#products" class="hover:text-white transition duration-300">Products</a>
+                    <a href="#contact" class="hover:text-white transition duration-300">Contact</a>
+                </div>
+                <div class="flex space-x-4">
+                    <!-- Social Media Links -->
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c17 0 21-12 21-15.5V3z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+                            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" x2="17.5" y1="6.5" y2="6.5"></line>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <p class="text-sm text-gray-500">&copy; 2025 Aone Hospitality Services. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <button id="back-to-top" title="Go to top">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </button>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Product Data (can be loaded from an API in a real-world scenario) ---
+const products = [
+{ id: 1, name: 'BALL PEN ADD GEL ACHIEVER NONDRAY', description: 'MRP: 50RS.', price: 40.0, image: 'https://rukminim2.flixcart.com/image/704/844/j0zlevk0/pen/t/s/p/add-gel-achiever-blue-pk10-original-imaesmr4fnzejxgq.jpeg?q=20&crop=false' },
+{ id: 2, name: 'BALL PEN CELLO FINEGRIP', description: 'MRP: 8RS.', price: 6.0, image: 'https://www.antmascot.com/_next/image?url=https%3A%2F%2Fd3olmw93qe7qxx.cloudfront.net%2Fimages%2Fproducts%2FFinegrip.jpg&w=3840&q=85' },
+{ id: 3, name: 'BALL PEN CELLO GRIPPER', description: 'MRP: 10RS.', price: 8.0, image: 'https://truewholesale.in/storage/product-images/17538777251.jpg' },
+{ id: 4, name: 'BALL PEN FLAIR EZEE CLICK 9608', description: 'MRP: 5RS.', price: 4.0, image: 'https://offimart.com/175-large_default/flair-ezee-click-ball-pen-07mm-blue-pack-of-5.jpg' },
+{ id: 5, name: 'BALL PEN LEXI', description: 'MRP: 8RS.', price: 5.0, image: 'https://m.media-amazon.com/images/I/51MWrhiHYOL._UF1000,1000_QL80_.jpg' },
+{ id: 6, name: 'BALL PEN REFILL LEXI', description: 'MRP: 3RS.', price: 2.5, image: 'https://5.imimg.com/data5/SELLER/Default/2025/6/519403975/CE/MV/VT/4743565/pen-refills-in-all-india-500x500.webp' },
+{ id: 7, name: 'BALL PEN REYNOLDS CHAMP MRP5', description: 'MRP: 5RS.', price: 3.9, image: 'https://m.media-amazon.com/images/I/413Y+KGLKaL.jpg_BO30,255,255,255_UF900,850_SR1910,1000,0,C_PIRIOTHREEANDHALF-medium,BottomLeft,30,-20_ZJPHNwYW4gZm9yZWdyb3VuZD0iIzU2NTk1OSIgZm9udD0iQW1hem9uRW1iZXIgNTAiID43Njc8L3NwYW4+,500,900,420,420,0,0_QL100_.jpg' },
+{ id: 8, name: 'BALL PEN REYNOLDS CHAMP MRP7', description: 'MRP: 7RS.', price: 4.6, image: 'https://m.media-amazon.com/images/I/71q1RyCK7jL.jpg' },
+{ id: 9, name: 'BALL PEN REYNOLDS RECER GEL', description: 'MRP: 15RS.', price: 12.0, image: 'https://m.media-amazon.com/images/I/81zX1-zbYOL.jpg' },
+{ id: 10, name: 'BALL PEN REYNOLDS 045', description: 'MRP: 10RS.', price: 7.5, image: 'https://m.media-amazon.com/images/I/81N8gJLutQL.jpg' },
+{ id: 11, name: 'GEL PEN NATRAJ', description: 'MRP: 5RS.', price: 3.5, image: 'https://www.silkrute.com/images/detailed/3142/41nyHo4oAZL.jpg' },
+{ id: 12, name: 'BALL PEN USE & THROW NATRAJ', description: 'MRP: 4RS.', price: 2.4, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmhO7XVEzFIzjKrjTx2Jf2lxBDz3Gttl14PjIXJ1CA5PFBwJXdPwLoiexjSJtZWFEE5lM&usqp=CAU' },
+{ id: 13, name: 'BALL PEN USE & THROW PEN', description: 'MRP: 4RS.', price: 2.2, image: 'https://m.media-amazon.com/images/I/71WSWhaYLYL.jpg' },
+{ id: 14, name: 'NATRAJ PENCIL 621', description: 'MRP: 5RS.', price: 36.0, image: 'https://bansalstationers.com/cdn/shop/products/image_ad0bf80c-538a-419b-8b49-b5477e3664f6.jpg?v=1627482143' },
+{ id: 15, name: 'NATRAJ ERASER', description: 'MRP: 1RS.', price: 0.86, image: 'https://bbag.in/cdn/shop/files/nataraj-621-plasto-eraser.jpg?v=1700305703' },
+{ id: 16, name: 'NATRAJ SHARPNER', description: 'MRP: 3RS.', price: 2.4, image: 'https://5.imimg.com/data5/LM/BJ/XR/SELLER-90205634/natraj-sharpner-500x500-500x500.jpg' },
+{ id: 17, name: 'APSARA PLATINUM PENCIL', description: 'MRP: 6RS.', price: 46.0, image: 'https://m.media-amazon.com/images/I/61XfAo84D+L.jpg' },
+{ id: 18, name: 'APSARA GLASS MARKING PENCIL', description: 'MRP: 7RS.', price: 56.0, image: 'https://topperskit.com/cdn/shop/files/27_56157041-c2e9-4ca0-9081-2bc778c1be3b.jpg?v=1708057369' },
+{ id: 19, name: 'APSARA SHARPNER', description: 'MRP: 5RS.', price: 3.8, image: 'https://m.media-amazon.com/images/I/71pQPtFefML._UF1000,1000_QL80_.jpg' },
+{ id: 20, name: 'APSARA ERASER', description: 'MRP: 3RS.', price: 2.35, image: 'https://cdn.zeptonow.com/production/tr:w-640,ar-2000-2000,pr-true,f-auto,q-80/cms/product_variant/3162da90-c23f-42c8-b538-a8b2226354ed.jpeg' },
+{ id: 21, name: 'SCALE PLASTIC 12"', description: 'MRP: 12RS.', price: 8.35, image: 'https://pracha.in/wp-content/uploads/2021/11/444.jpeg' },
+{ id: 22, name: 'SCALE PLASTIC 6"', description: 'MRP: 5RS.', price: 3.5, image: 'https://bbag.in/cdn/shop/files/61ZwGfoJ-VL._AC_UF894_1000_QL80.jpg?v=1697608784' },
+{ id: 23, name: 'PROTECTOR SHEET A/4 50 MICRON', description: 'MRP: SPA200RS.', price: 2.5, image: 'https://m.media-amazon.com/images/I/41HLhGYP77L._UF1000,1000_QL80_.jpg' },
+{ id: 24, name: 'PROTECTOR SHEET A/4 100 MICRON', description: 'MRP: SPA400RS.', price: 3.6, image: 'https://5.imimg.com/data5/RY/FH/MY-1168524/sheet-protector-500x500.jpg' },
+{ id: 25, name: 'PROTECTOR SHEET FC 50 MICRON', description: 'MRP: SPF200RS.', price: 2.2, image: 'https://m.media-amazon.com/images/I/61xfOTvIE2L._UF350,350_QL80_.jpg' },
+{ id: 26, name: 'PROTECTOR SHEET FC 100 MICRON', description: 'MRP: SPF400RS.', price: 4.5, image: 'https://solo.in/cdn/shop/files/sheet-protector-100-microns-730511.webp?v=1742021589' },
+{ id: 27, name: 'L FOLDER A4 14MM', description: 'MRP: LFA140RS.', price: 6.0, image: 'https://5.imimg.com/data5/SELLER/Default/2024/11/468385454/NP/OY/BT/100086194/l-shape-plastic-file-folder-500x500.jpeg' },
+{ id: 28, name: 'L FOLDER FS 14MM', description: 'MRP: LFF140RS.', price: 7.0, image: 'https://m.media-amazon.com/images/I/41qNbu+1C0L._UF1000,1000_QL80_.jpg' },
+{ id: 29, name: 'REPORT FILE A4 ECO', description: 'MRP: RFE100RS.', price: 20.0, image: 'https://m.media-amazon.com/images/I/41P5cNvWBCL._UF1000,1000_QL80_.jpg' },
+{ id: 30, name: 'REPORT FILE A4', description: 'MRP: RFA101TRS.', price: 20.0, image: 'https://truewholesale.in/storage/product-images/17201702890.jpg' },
+{ id: 31, name: 'BUTTON FOLDER A4 20MM', description: 'MRP: DF2011RS.', price: 15.0, image: 'https://images.meesho.com/images/products/266234028/zxsq3_512.jpg' },
+{ id: 32, name: 'CARBON PAPER', description: 'MRP: 220RS.', price: 162.0, image: 'https://rukminim2.flixcart.com/image/850/1000/jlsc58w0/paper/v/q/j/carbon10211073-carbon-paper-kores-original-imaf8tddtr2qhc6q.jpeg?q=20&crop=false' },
+{ id: 33, name: 'KANGARO PIN REMOVER SR100', description: 'MRP: 75RS.', price: 46.0, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzWjRHpbPhI2HIVVaKBX-lxS-XZY0yP9b1NA&s' },
+{ id: 34, name: 'KANGARO PIN REMOVER SR300', description: 'MRP: 280RS.', price: 185.0, image: 'https://buysupplies.in/cdn/shop/products/KangaroSR-300HeavyDutyStapleRemover2_1200x1200.jpg?v=1614598943' },
+{ id: 35, name: 'KANGARO PIN REMOVER SR500', description: 'MRP: 210RS.', price: 138.0, image: 'https://m.media-amazon.com/images/I/71ec7-8TgPL._UF1000,1000_QL80_.jpg' },
+{ id: 36, name: 'KANGARO PUNCH MACHINE DP-280', description: 'MRP: 130RS.', price: 82.0, image: 'https://topperskit.com/cdn/shop/files/53_f52c326a-0a13-47e7-aef2-b2eecf4b79d6.jpg?v=1707227968&width=1445' },
+{ id: 37, name: 'KANGARO PUNCH MACHINE DP-480', description: 'MRP: 135RS.', price: 85.0, image: 'https://scooboo.in/cdn/shop/products/kangaro-dp-480-punch-machine-778800.jpg?v=1641550602&width=1214' },
+{ id: 38, name: 'KANGARO PUNCH MACHINE DP-500', description: 'MRP: 230RS.', price: 145.0, image: 'https://i0.wp.com/wisycart.com/wp-content/uploads/2022/10/KDP-500-4.jpg?fit=978%2C752&ssl=1' },
+{ id: 39, name: 'KANGARO PUNCH MACHINE DP-52', description: 'MRP: 112RS.', price: 73.0, image: 'https://buysupplies.in/cdn/shop/products/KangaroDP-52PaperPunch1_1200x1200.jpg?v=1614603045' },
+{ id: 40, name: 'KANGARO PUNCH MACHINE DP-600', description: 'MRP: 225RS.', price: 140.0, image: 'https://buysupplies.in/cdn/shop/products/KangaroDP-600PaperPunch_1200x1200.jpg?v=1614662327' },
+{ id: 41, name: 'KANGARO PUNCH MACHINE DP-700', description: 'MRP: 575RS.', price: 375.0, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7X_aXuTkpShpYu7awzAQQAe_VmmUPMgdZiw&s' },
+{ id: 42, name: 'KANGARO PUNCH MACHINE DP-800', description: 'MRP: 2125RS.', price: 1370.0, image: 'https://m.media-amazon.com/images/I/81pE7r7ZFSL.jpg' },
+{ id: 43, name: 'KANGARO STAPLER HD-10', description: 'MRP: 75RS.', price: 42.0, image: 'https://5.imimg.com/data5/SELLER/Default/2022/1/IB/WF/BM/38468220/kangaro-hd-10-stapler-500x500.jpg' },
+{ id: 44, name: 'KANGARO STAPLER HD10D', description: 'MRP: 124RS.', price: 80.0, image: 'https://5.imimg.com/data5/WH/WW/RI/ANDROID-22692081/product-jpeg.jpeg' },
+{ id: 45, name: 'KANGARO STAPLER HD45', description: 'MRP: 180RS.', price: 115.0, image: 'https://premiumstationers.lk/cdn/shop/products/1110027.jpg?v=1630773706' },
+{ id: 46, name: 'KANGARO STAPLER HP45', description: 'MRP: 335RS.', price: 222.0, image: 'https://bansalstationers.com/cdn/shop/products/HP-45.jpg?v=1569492144&width=1946' },
+{ id: 47, name: 'KANGARO STAPLER ICON', description: 'MRP: 112RS.', price: 66.0, image: 'https://i0.wp.com/www.sfdstore.com/wp-content/uploads/2020/05/Kangaro-Stapler-Icon-No-10-52-mm.jpg?fit=1200%2C1200&ssl=1' },
+{ id: 48, name: 'KANGARO STAPLER MINI 10', description: 'MRP: 78RS.', price: 50.0, image: 'https://m.media-amazon.com/images/I/71E5ivPBEdL._UF1000,1000_QL80_.jpg' },
+{ id: 49, name: 'KANGARO STAPLER PIN 24 X 6', description: 'MRP: 25RS.', price: 15.5, image: 'https://topperskit.com/cdn/shop/files/171.jpg?v=1705995595' },
+{ id: 50, name: 'KANGARO STAPLER PIN 26 X 6', description: 'MRP: 25RS.', price: 17.0, image: 'https://offimart.com/4082-large_default/kangaro-266-staples-pack-of-10.jpg' },
+{ id: 51, name: 'KANGARO STAPLER PIN NO.10', description: 'MRP: 12RS.', price: 6.75, image: 'https://topperskit.com/cdn/shop/files/173.jpg?v=1705995642' },
+{ id: 52, name: 'OHP CD MARKER', description: 'MRP: 10RS.', price: 6.75, image: 'https://rukminim2.flixcart.com/image/704/844/kn0n6a80/marker-highlighter/x/u/n/cd-dvd-ohp-marker-black-cd-dvd-ohp-marker-kokuyo-camlin-original-imagfscu3wcxpfzz.jpeg?q=90&crop=false' },
+{ id: 53, name: 'SKETCH PENS (SET OF 12)', description: 'MRP: 30RS.', price: 19.0, image: 'https://i0.wp.com/sbcstore.in/wp-content/uploads/2022/01/shopping-1.webp?fit=2500%2C2500&ssl=1' },
+{ id: 54, name: 'HIGHLIGHTER', description: 'MRP: 25RS.', price: 13.0, image: 'https://office360s.com/wp-content/uploads/2024/04/highlighter-2.jpg' },
+{ id: 55, name: 'HIGHLIGHTER', description: 'MRP: 25RS.', price: 17.0, image: 'https://gossge.com/wp-content/uploads/2025/04/Highlighter-pens.jpg' },
+{ id: 117, name: 'CAMLIN HIGHLIGHTER', description: 'MRP: 25RS.', price: 17.0, image: 'https://www.kokuyocamlin.com/camlin/assets/camlin/markers-and-pens/highlighters/assorted-packs/assorted-pouch-of-5-shades/1.JPG' },
+{ id: 56, name: 'HIGHLIGHTER (SET OF 5)', description: 'MRP: 125RS.', price: 65.0, image: 'https://5.imimg.com/data5/KL/HJ/NX/SELLER-33276151/highlighter-set-of-5-faber-castell.jpg' },
+{ id: 118, name: 'CAMLIN HIGHLIGHTER (SET OF 5)', description: 'MRP: 125RS.', price: 85.0, image: 'https://statmo.in/wp-content/uploads/2024/12/Camlin-Highlighters-Assorted-5-Shades-min.jpg' },
+{ id: 58, name: 'BLUE PERMANENT MARKER', description: 'MRP: 20RS.', price: 10.0, image: 'https://i0.wp.com/wisycart.com/wp-content/uploads/2022/09/PM-Blue-sqr-img.png?fit=1905%2C1905&ssl=1' },
+{ id: 58, name: 'BLACK PERMANENT MARKER', description: 'MRP: 20RS.', price: 10.0, image: 'https://i0.wp.com/wisycart.com/wp-content/uploads/2022/09/PM-Black-sqr-img.png' },
+{ id: 59, name: 'WHITE BOARD MARKER', description: 'MRP: 28RS.', price: 13.0, image: 'https://kundantraders.co.in/cdn/shop/products/luxorwhiteboardmarker_1024x.jpg?v=1640609938' },
+{ id: 60, name: 'WHITE BOARD MARKER', description: 'MRP: 28RS.', price: 15.0, image: 'https://i0.wp.com/wisycart.com/wp-content/uploads/2022/09/WBM-Blue-sqr-img.png' },
+{ id: 61, name: 'WHITE BOARD DUSTER', description: 'MRP: 38RS.', price: 14.5, image: 'https://topperskit.com/cdn/shop/files/67_9b3a1d72-6d39-4f6d-b1aa-644fd8f5354e.jpg?v=1708076831' },
+{ id: 62, name: 'WAX CRAYONS', description: 'MRP: 10RS.', price: 6.9, image: 'https://i0.wp.com/www.sfdstore.com/wp-content/uploads/2020/03/Wax-Crayin-12s.jpg?fit=500%2C500&ssl=1' },
+{ id: 63, name: 'CORRECTION PEN', description: 'MRP: 25RS.', price: 16.5, image: 'https://m.media-amazon.com/images/I/41xU+Jdnn1L._UF1000,1000_QL80_.jpg' },
+{ id: 64, name: 'CORRECTION PEN', description: 'MRP: 30RS.', price: 15.5, image: 'https://bbag.in/cdn/shop/files/correction-fluid-pen.jpg?v=1699612186&width=900' },
+{ id: 65, name: 'WHITE BOARD MARKER INK 15ML', description: 'MRP: 30RS.', price: 23.0, image: 'https://m.media-amazon.com/images/I/61b1KQC44-L.jpg' },
+{ id: 66, name: 'PERMANENT MARKER INK 15ML', description: 'MRP: 25RS.', price: 19.0, image: 'https://djl2kq23xfhqi.cloudfront.net/productimages/WebP/7109018_2.webp' },
+{ id: 67, name: 'STAMP PAD MEDIUM', description: 'MRP: 45RS.', price: 28.0, image: 'https://helloaugust.in/wp-content/uploads/2020/04/camlin-plastic-stamp-pad-small.jpg' },
+{ id: 68, name: 'STAMP PAD BIG', description: 'MRP: 90RS.', price: 60.0, image: 'https://3.imimg.com/data3/OS/HV/MY-1919869/1-500x500.jpg' },
+{ id: 69, name: 'PAPER CUTTER BIG 18MM', description: 'MRP: 30RS.', price: 24.0, image: 'https://5.imimg.com/data5/IJ/HS/MY-14464559/paper-cutter-500x500.jpeg' },
+{ id: 70, name: 'FEVI STICK 15 GM', description: 'MRP: 40RS.', price: 29.0, image: 'https://topperskit.com/cdn/shop/files/22.jpg?v=1703499696' },
+{ id: 71, name: 'FEVI STICK 8 GM', description: 'MRP: 25RS.', price: 19.0, image: 'https://topperskit.com/cdn/shop/files/25.jpg?v=1703499662' },
+{ id: 72, name: 'FEVI STICK 5 GM', description: 'MRP: 15RS.', price: 12.5, image: 'https://5.imimg.com/data5/SELLER/Default/2025/3/495694538/AM/NJ/MZ/38951135/fevistik-glue-stick-5gm-multi-purpose-glue-stick-am3110.webp' },
+{ id: 73, name: 'GLUE STICK 15 GM', description: 'MRP: 35RS.', price: 19.5, image: 'https://scooboo.in/cdn/shop/files/soni-officemate-glue-stick-set-15-grams-glue-adhesive-scooboosoni-officemate8906001226918302-291684.jpg?v=1713412338&width=1214' },
+{ id: 74, name: 'GLUE STICK 8 GM', description: 'MRP: 25RS.', price: 14.0, image: 'https://scooboo.in/cdn/shop/files/soni-officemate-glue-stick-set-15-grams-glue-adhesive-scooboosoni-officemate8906001226918302-291684.jpg?v=1713412338&width=1214' },
+{ id: 75, name: 'GLUE STICK 8 GM', description: 'MRP: 25RS.', price: 16.5, image: 'https://scooboo.in/cdn/shop/files/soni-officemate-glue-stick-set-15-grams-glue-adhesive-scooboosoni-officemate8906001226918302-291684.jpg?v=1713412338&width=1214' },
+{ id: 76, name: 'FEVIKWIK 1 GM', description: 'MRP: 10RS.', price: 7.9, image: 'https://www.himalayafineart.com/cdn/shop/files/A00014656.webp?v=1752149908' },
+{ id: 77, name: 'FEVIKWIK 2 GM', description: 'MRP: 20RS.', price: 15.8, image: 'https://5.imimg.com/data5/SELLER/Default/2023/2/OQ/IV/QX/49198176/fevikwik-2-gm-3.jpg' },
+{ id: 78, name: 'EVIKWIK 203 20 GM', description: 'MRP: 80RS.', price: 53.25, image: 'https://m.media-amazon.com/images/I/51aF4e6WPZL.jpg' },
+{ id: 79, name: 'FLEXKWIK 20 GM', description: 'MRP: 60RS.', price: 40.0, image: 'https://topperskit.com/cdn/shop/files/39.jpg?v=1703499019' },
+{ id: 80, name: 'FEVIKWIK 3 GM', description: 'MRP: 30RS.', price: 24.0, image: 'https://4.imimg.com/data4/PA/IA/MY-30347076/fevikwik-3-gm.jpg' },
+{ id: 81, name: 'FEVIKWIK 450 MG', description: 'MRP: 5RS.', price: 4.0, image: 'https://rukminim2.flixcart.com/image/704/844/xif0q/adhesive/o/c/h/0-45-450-mg-pouch-81-pcs-fevikwik-original-imahbt3shjhbdwcn.jpeg?q=20&crop=false' },
+{ id: 82, name: 'LONG BOOK 72 PGS', description: 'MRP: 25RS.', price: 17.5, image: 'https://i0.wp.com/wisycart.com/wp-content/uploads/2022/05/extra-07127720.jpg?fit=1740%2C2000&ssl=1' },
+{ id: 83, name: 'LONG BOOK 172 PGS', description: 'MRP: 50RS.', price: 35.0, image: 'https://cpimg.tistatic.com/07126793/b/6/extra-07126793.jpg' },
+{ id: 84, name: 'SCOTCH MAGIC TAPE WITH DISPENSER', description: 'MRP: 150RS.', price: 122.0, image: 'https://m.media-amazon.com/images/I/71ilgadOhgL._UF350,350_QL80_.jpg' },
+{ id: 85, name: 'SCOTCH MAGIC TAPE', description: 'MRP: 120RS.', price: 97.0, image: 'https://m.media-amazon.com/images/I/611lZkvQr0L._UF1000,1000_QL80_.jpg' },
+{ id: 86, name: 'DOUBLE SIDED TAPE 12MM', description: 'MRP: 120RS.', price: 97.0, image: 'https://m.media-amazon.com/images/I/41FQrEfI41L._UF350,350_QL80_.jpg' },
+{ id: 87, name: 'DOUBLE SIDED TAPE 18MM', description: 'MRP: 160RS.', price: 130.0, image: 'https://www.labelkraft.com/media/catalog/product/cache/1/thumbnail/600x/17f82f742ffe127f42dca9de82fb58b1/y/e/yellow-double-sided-foam-tape-500x500_3.jpg' },
+{ id: 88, name: 'DOUBLE SIDED TAPE 24MM', description: 'MRP: 180RS.', price: 146.0, image: 'https://inkarto.com/cdn/shop/files/jags-mumbai-tape-double-sided-foam-tape-1-meter-long-24mm-wide-41144019648725.jpg?v=1712525171' },
+{ id: 89, name: 'M-SEAL PHATA PHAT [25 GM]', description: 'MRP: 10RS.', price: 8.0, image: 'https://m.media-amazon.com/images/I/51H80j-qgTL.jpg_BO30,255,255,255_UF900,850_SR1910,1000,0,C_PIRIOFOUR-medium,BottomLeft,30,-20_QL100_.jpg' },
+{ id: 90, name: 'M-SEAL REG EPX COMPD [60 GM]      ', description: 'MRP: 20RS.', price: 16.0, image: 'https://m.media-amazon.com/images/I/5108SsxDWAL._UF1000,1000_QL80_.jpg' },
+{ id: 91, name: 'M-SEAL SMALL PACKS [REG EPOXY COMP', description: 'MRP: 30RS.', price: 24.0, image: 'https://5.imimg.com/data5/SELLER/Default/2023/2/WO/AZ/QA/49198176/m-seal-regular-epoxy-compound-90-gram.jpg' },
+{ id: 92, name: 'DURACELL AA', description: 'MRP: 55RS.', price: 40.0, image: 'https://m.media-amazon.com/images/I/71Bye4xoosL.jpg' },
+{ id: 93, name: 'DURACELL AAA', description: 'MRP: 55RS.', price: 40.0, image: 'https://m.media-amazon.com/images/I/71BlPY2zoHL.jpg' },
+{ id: 94, name: 'DURACELL BATTERY 9V', description: 'MRP: 300RS.', price: 220.0, image: 'https://www.duracell.in/upload/sites/10/2023/02/Web-PI-ALKALINE_PACKSHOTS_IN_Ultra_9v_1_BL_5000394118881_5005409_FOP.png' },
+{ id: 95, name: 'DURACELL BATTERY 9V (Set of 2)', description: 'MRP: 500RS.', price: 368.0, image: 'https://m.media-amazon.com/images/I/71di6AcEHuL._UF1000,1000_QL80_.jpg' },
+{ id: 96, name: 'DURACELL BATTERY C2 SIZE (Set of 2)', description: 'MRP: 300RS.', price: 220.0, image: 'https://robu.in/wp-content/uploads/2022/09/C-DURACELL-BATTERY.jpg' },
+{ id: 97, name: 'DURACELL BATTERY D2 SIZE (Set of 2)', description: 'MRP: 450RS.', price: 330.0, image: 'https://rukminim2.flixcart.com/image/704/844/jykfxjk0/battery/alkaline-battery/h/m/b/duracell-d2-original-imafgrtwjgk65vca.jpeg?q=90&crop=false' },
+{ id: 98, name: 'DURACELL ULTRA 6V NO-223', description: 'MRP: 1100RS.', price: 742.0, image: 'https://m.media-amazon.com/images/I/61QZe0bqZ9L._UF1000,1000_QL80_.jpg' },
+{ id: 99, name: 'STICK NOTES 2X3', description: 'MRP: 50RS.', price: 42.0, image: 'https://5.imimg.com/data5/SELLER/Default/2023/5/310372230/DJ/VA/BH/86910704/2-x-3-inch-jc-stick-notes-500x500.jpg' },
+{ id: 100, name: 'STICK NOTES 3X3 COLOUR', description: 'MRP: 75RS.', price: 63.0, image: 'https://images.meesho.com/images/products/77017872/8pjhv_512.webp?width=512' },
+{ id: 101, name: 'STICK NOTES 3X3', description: 'MRP: 70RS.', price: 59.0, image: 'https://images.meesho.com/images/products/77017872/8pjhv_512.webp?width=512' },
+{ id: 102, name: 'STICK NOTES 3X4', description: 'MRP: 100RS.', price: 84.0, image: 'https://5.imimg.com/data5/SELLER/Default/2023/5/310372451/EK/LQ/KS/86910704/jc-single-cut-stick-notes.jpg' },
+{ id: 103, name: 'STICK NOTES 3X5', description: 'MRP: 115RS.', price: 97.0, image: 'https://m.media-amazon.com/images/I/61SCaoxjorL.jpg' },
+{ id: 104, name: 'STICK NOTES 1X3 PROMS', description: 'MRP: 70RS.', price: 59.0, image: 'https://m.media-amazon.com/images/I/617zES3-JHL.jpg' },
+{ id: 105, name: 'SIGN HERE OR FLAGS', description: 'MRP: 75RS.', price: 63.0, image: 'https://m.media-amazon.com/images/I/41IVLJNJVRL._UF1000,1000_QL80_.jpg' },
+{ id: 106, name: 'PLASTIC KEYCHAIN', description: 'MRP: 5RS.', price: 2.5, image: 'https://m.media-amazon.com/images/I/6109u6Sr50L._UY1100_.jpg' },
+{ id: 107, name: 'CASIO MJ-120GST (200 STEPS)', description: 'MRP: 595RS.', price: 458.0, image: 'https://www.mobilityindia.com/wp-content/uploads/2024/03/Unlock-Effortless-GST-Calculations-with-the-Casio-Check-Correct-MJ-120GST-Calculator.jpg' },
+{ id: 108, name: 'CASIO MJ-12D (150 STEPS)', description: 'MRP: 490RS.', price: 377.0, image: 'https://m.media-amazon.com/images/I/61nF7J8XREL._UF1000,1000_QL80_.jpg' },
+{ id: 109, name: 'CASIO MJ-120D (150 STEPS)', description: 'MRP: 555RS.', price: 427.0, image: 'https://5.imimg.com/data5/SELLER/Default/2021/8/CD/BD/SV/29322780/casio-mj-120d-150-step-check-desktop-calculator.jpg' },
+{ id: 110, name: 'CASIO DJ-120D (150 STEPS)', description: 'MRP: 795RS.', price: 612.0, image: 'https://m.media-amazon.com/images/I/618+XBOkuLL._UF350,350_QL80_.jpg' },
+{ id: 111, name: 'CASIO MJ-100Da (150 STEPS)', description: 'MRP: 525RS.', price: 404.0, image: 'https://m.media-amazon.com/images/I/61HQBDH3AWL.jpg' },
+{ id: 112, name: 'CASIO MJ-12Sb (150 STEPS)', description: 'MRP: 415RS.', price: 320.0, image: 'https://m.media-amazon.com/images/I/41oSDO5r6cL.jpg_BO30,255,255,255_UF900,850_SR1910,1000,0,C_PIRIOFOUR-medium,BottomLeft,30,-20_ZJPHNwYW4gZm9yZWdyb3VuZD0iIzU2NTk1OSIgZm9udD0iQW1hem9uRW1iZXIgNTAiID4zLDgwMDwvc3Bhbj4=,500,900,420,420,0,0_QL100_.jpg' },
+{ id: 113, name: 'Camel Gum Bottle,50 ML', description: 'MRP: 25RS.', price: 18.5, image: 'https://www.kokuyocamlin.com/camlin/camel-access/image/catalog/assets/camlin/adhesives/gums-and-pastes/gums/individual-bottle-of-50-ml-gums/2.JPG' },
+{ id: 114, name: 'Camel Gum Bottle,150 ML', description: 'MRP: 50RS.', price: 36.75, image: 'https://www.kokuyocamlin.com/camlin/assets/camlin/adhesives/gums-and-pastes/pastes/individual-bottle-of-50-ml/1.JPG' },
+{ id: 115, name: 'Camel Gum Bottle,300 ML', description: 'MRP: 75RS.', price: 55.0, image: 'https://5.imimg.com/data5/SELLER/Default/2024/6/428943324/TM/MI/FA/222402637/gum-bottle-camlin-300ml-500x500.jpg' },
+{ id: 116, name: 'Camel Gum Bottle,700 ML', description: 'MRP: 140RS.', price: 102.5, image: 'https://5.imimg.com/data5/SELLER/Default/2025/5/508727211/JV/OE/ND/25666028/700ml-camlin-gum.jpeg' }
+];
+
+            // --- Global State & DOM Elements ---
+            let cartItems = [];
+            const productGrid = document.getElementById('product-grid');
+            const cartButton = document.getElementById('cart-button');
+            const cartButtonMobile = document.getElementById('cart-button-mobile');
+            const cartCountSpan = document.getElementById('cart-count');
+            const cartCountMobileSpan = document.getElementById('cart-count-mobile');
+            const cartSidebar = document.getElementById('cart-sidebar');
+            const enquireNowButton = document.getElementById('enquireNowButton');
+            const closeCartButton = document.getElementById('close-cart-button');
+            const cartItemsContainer = document.getElementById('cart-items-container');
+            const cartTotalSpan = document.getElementById('cart-total');
+            const cartSummaryDiv = document.getElementById('cart-summary');
+            const emailCheckoutLink = document.getElementById('email-checkout-link');
+            const whatsappCheckoutLink = document.getElementById('whatsapp-checkout-link');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const backToTopButton = document.getElementById('back-to-top');
+            const productSearchInput = document.getElementById('product-search');
+
+            // --- UI Rendering Functions ---
+            function renderProducts(filteredProducts = products) {
+                if (filteredProducts.length === 0) {
+                    productGrid.innerHTML = '<p class="text-center text-gray-500 text-lg">No products found matching your search.</p>';
+                    return;
+                }
+
+                productGrid.innerHTML = filteredProducts.map(product => `
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover" />
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">${product.name}</h3>
+                            <p class="text-sm text-gray-500 mb-2">${product.description}</p>
+                            <p class="text-gray-600 text-lg mb-4">₹${product.price.toFixed(2)}</p>
+                            <button
+                                data-product-id="${product.id}"
+                                class="add-to-cart-btn w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-bold text-base transition-colors duration-300 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                            >
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+
+                // Attach event listeners to all 'add to cart' buttons after rendering
+                document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+                    button.addEventListener('click', (event) => {
+                        const productId = parseInt(event.target.dataset.productId);
+                        const productToAdd = products.find(p => p.id === productId);
+                        if (productToAdd) {
+                            handleAddToCart(productToAdd);
+                            // Open the cart after adding an item for better UX
+                        }
+                    });
+                });
+            }
+
+            function renderCartItems() {
+                if (cartItems.length === 0) {
+                    cartItemsContainer.innerHTML = '<p class="text-gray-500 text-center py-8">Your cart is empty.</p>';
+                    cartSummaryDiv.classList.add('hidden');
+                } else {
+                    cartItemsContainer.innerHTML = `
+                        <ul class="space-y-4">
+                            ${cartItems.map(item => `
+                                <li class="flex items-center space-x-4 bg-white p-4 rounded-lg shadow-sm">
+                                    <img src="${item.image}" alt="${item.name}" class="w-16 h-16 rounded-md object-cover" />
+                                    <div class="flex-1">
+                                        <h4 class="font-semibold text-gray-800">${item.name}</h4>
+                                        <p class="text-sm text-gray-600">₹${item.price.toFixed(2)}</p>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <button data-id="${item.id}" data-change="-1" class="update-quantity-btn p-1 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus"><path d="M5 12h14"/></svg>
+                                        </button>
+                                        <span class="font-medium">${item.quantity}</span>
+                                        <button data-id="${item.id}" data-change="1" class="update-quantity-btn p-1 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                                        </button>
+                                        <button data-id="${item.id}" class="remove-from-cart-btn text-gray-400 hover:text-red-500">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                                        </button>
+                                    </div>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    `;
+                    cartSummaryDiv.classList.remove('hidden');
+
+                    // Attach event listeners to new cart item buttons
+                    cartItemsContainer.querySelectorAll('.update-quantity-btn').forEach(button => {
+                        button.addEventListener('click', (event) => {
+                            const itemId = parseInt(event.currentTarget.dataset.id);
+                            const change = parseInt(event.currentTarget.dataset.change);
+                            handleUpdateQuantity(itemId, change);
+                        });
+                    });
+
+                    cartItemsContainer.querySelectorAll('.remove-from-cart-btn').forEach(button => {
+                        button.addEventListener('click', (event) => {
+                            const itemId = parseInt(event.currentTarget.dataset.id);
+                            handleRemoveFromCart(itemId);
+                        });
+                    });
+                }
+            }
+
+            function updateCartTotals() {
+                const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+                cartTotalSpan.textContent = `₹${total.toFixed(2)}`;
+
+                // Generate and encode the checkout message for email and WhatsApp
+                const message = generateCheckoutMessage(cartItems, total);
+                emailCheckoutLink.href = `mailto:aonehospitalitys@gmail.com?subject=${encodeURIComponent("New Order from Aone Hospitality Services")}&body=${encodeURIComponent(message)}`;
+                whatsappCheckoutLink.href = `https://wa.me/919867531298?text=${encodeURIComponent(message)}`;
+            }
+
+            function updateCartCount() {
+                const count = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+                cartCountSpan.textContent = count;
+                cartCountMobileSpan.textContent = count;
+                if (count > 0) {
+                    cartCountSpan.classList.remove('hidden');
+                    cartCountMobileSpan.classList.remove('hidden');
+                } else {
+                    cartCountSpan.classList.add('hidden');
+                    cartCountMobileSpan.classList.add('hidden');
+                }
+            }
+
+            function updateUI() {
+                renderCartItems();
+                updateCartTotals();
+                updateCartCount();
+            }
+            
+            // --- Business Logic Functions ---
+            function handleAddToCart(product) {
+                const existingItem = cartItems.find(item => item.id === product.id);
+                if (existingItem) {
+                    existingItem.quantity++;
+                } else {
+                    cartItems.push({ ...product, quantity: 1 });
+                }
+                updateUI();
+            }
+
+            function handleRemoveFromCart(id) {
+                cartItems = cartItems.filter(item => item.id !== id);
+                updateUI();
+            }
+
+            function handleUpdateQuantity(id, change) {
+                const item = cartItems.find(item => item.id === id);
+                if (item) {
+                    item.quantity += change;
+                    if (item.quantity <= 0) {
+                        handleRemoveFromCart(id);
+                    } else {
+                        updateUI();
+                    }
+                }
+            }
+            
+            // Function to filter products based on search query
+            function filterProducts(query) {
+                const lowerCaseQuery = query.toLowerCase();
+                const filtered = products.filter(product => {
+                    const nameMatch = product.name.toLowerCase().includes(lowerCaseQuery);
+                    const descriptionMatch = product.description.toLowerCase().includes(lowerCaseQuery);
+                    return nameMatch || descriptionMatch;
+                });
+                renderProducts(filtered);
+            }
+
+            function generateCheckoutMessage(items, total) {
+                let message = "Hello, I would like to place an order for the following items:\n\n";
+                items.forEach(item => {
+                    message += `- ${item.name} (x${item.quantity}): ₹${(item.price * item.quantity).toFixed(2)}\n`;
+                });
+                message += `\nTotal: ₹${total.toFixed(2)}\n\n`;
+                message += "Thank you!";
+                return message;
+            }
+
+            // --- Event Listeners for UI interaction ---
+            // Open cart sidebar
+            cartButton.addEventListener('click', () => {
+                cartSidebar.classList.remove('translate-x-full');
+            });
+            cartButtonMobile.addEventListener('click', () => {
+                cartSidebar.classList.remove('translate-x-full');
+            });
+            enquireNowButton.addEventListener('click', () => {
+                cartSidebar.classList.remove('translate-x-full');
+            });
+
+            // Close cart sidebar
+            closeCartButton.addEventListener('click', () => {
+                cartSidebar.classList.add('translate-x-full');
+            });
+
+            // Toggle mobile menu visibility
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Listen for search input
+            productSearchInput.addEventListener('input', (event) => {
+                filterProducts(event.target.value);
+            });
+
+            // Back to top button functionality
+            window.onscroll = function() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    backToTopButton.style.display = "block";
+                } else {
+                    backToTopButton.style.display = "none";
+                }
+            };
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Smooth scroll for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+
+                    if (targetElement) {
+                        const headerOffset = 64; // Approximate height of the fixed header
+                        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                        const offsetPosition = elementPosition - headerOffset;
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                    }
+                });
+            });
+
+            // --- Initial Setup on page load ---
+            renderProducts();
+            updateUI();
+        });
+    </script>
+</body>
+</html>

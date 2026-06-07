@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>A One Hospitality Services | Quotation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+:root{
+    --primary:#0b3c5d;
+    --border:#d1d5db;
+    --light:#eaf0f6;
+}
+
+body{
+    font-family:"Segoe UI",Arial,sans-serif;
+    background:#f4f6f8;
+    padding:15px;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    background:#fff;
+    box-shadow:0 6px 18px rgba(0,0,0,.12);
+}
+
+.header{
+    background:var(--primary);
+    color:#fff;
+    padding:18px;
+    display:flex;
+    gap:15px;
+    align-items:center;
+}
+
+.header img{
+    height:55px;
+    background:#fff;
+    padding:5px;
+    border-radius:4px;
+}
+
+.content{padding:22px}
+
+h2{
+    text-align:center;
+    color:var(--primary);
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+.row{
+    display:flex;
+    gap:15px;
+    margin-bottom:10px;
+    flex-wrap:wrap;
+}
+
+.row div{flex:1;min-width:220px}
+
+label{
+    font-size:12px;
+    font-weight:600;
+}
+
+input,select,textarea{
+    width:100%;
+    padding:6px 8px;
+    border:1px solid var(--border);
+    border-radius:4px;
+    margin-top:4px;
+    font-size:13px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:18px;
+    font-size:13px;
+}
+
+th,td{
+    border:1px solid var(--border);
+    padding:7px;
+    text-align:center;
+    vertical-align:middle;
+}
+
+th{
+    background:var(--light);
+    font-weight:600;
+}
+
+img.item-img{
+    height:60px;
+    max-width:80px;
+    object-fit:contain;
+}
+
+.no-print{display:block}
+
+.active-cell{
+    outline:2px dashed var(--primary);
+}
+
+/* ---------- PRINT ---------- */
+@media print{
+    .no-print{display:none !important}
+
+    body{
+        background:#fff;
+        -webkit-print-color-adjust:exact;
+        print-color-adjust:exact;
+    }
+
+    .container{box-shadow:none}
+
+    input,textarea{
+        border:none;
+        padding:0;
+        background:transparent;
+    }
+
+    select{
+        border:none;
+        appearance:none;
+        -webkit-appearance:none;
+        -moz-appearance:none;
+        background:none;
+        padding:0;
+    }
+
+    th{background:#eaf0f6 !important}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+    <img src="https://aonehospitalitys.com/logo.png">
+    <div>
+        <h3 style="font-size:18px;font-weight:700">A One Hospitality Services</h3>
+        <small>Stationery | Housekeeping | Hospitality</small>
+    </div>
+</div>
+
+<div class="content">
+
+<h2>QUOTATION</h2>
+
+<div class="row">
+    <div>
+        <label>Date</label>
+        <input type="date" id="docDate">
+    </div>
+</div>
+
+<div class="row">
+    <div>
+        <label>Customer Name</label>
+        <input id="cname">
+    </div>
+    <div>
+        <label>Mobile</label>
+        <input id="cmobile">
+    </div>
+</div>
+
+<label>Address</label>
+<textarea id="caddress" rows="2"></textarea>
+
+<table id="itemTable">
+<tr>
+    <th>Sr</th>
+    <th style="width:220px">Product</th>
+    <th>Image</th>
+    <th>UOM</th>
+    <th>Qty</th>
+    <th>Rate</th>
+    <th>Amount</th>
+    <th class="no-print">❌</th>
+</tr>
+</table>
+
+<div class="no-print mt-3">
+    <button onclick="addRow()">+ Add Item</button>
+    <button onclick="saveDoc()">💾 Save</button>
+    <button onclick="window.print()">🖨 Print</button>
+    <button onclick="exportPDF()">📄 Export PDF</button>
+</div>
+
+<h3 style="text-align:right;margin-top:15px">
+    Total ₹ <span id="grandTotal">0.00</span>
+</h3>
+
+</div>
+</div>
+
+<script>
+let items=[];
+let counter=Number(localStorage.getItem("qCounter")||1001);
+let activeRow=null;
+
+docNo.value="QT-"+counter;
+
+function uomOptions(sel){
+    return ["Nos","Pkt","Box","Kg","Lit","Set"]
+        .map(u=>`<option ${u===sel?"selected":""}>${u}</option>`).join("");
+}
+
+function addRow(){
+    items.push({
+        product:"",
+        uom:"Nos",
+        qty:1,
+        rate:0,
+        image:""
+    });
+    render();
+}
+
+function handleImage(i,file){
+    if(!file) return;
+    let r=new FileReader();
+    r.onload=e=>{
+        items[i].image=e.target.result;
+        render();
+    };
+    r.readAsDataURL(file);
+}
+
+function setActiveRow(i){
+    activeRow=i;
+    document.querySelectorAll(".active-cell")
+        .forEach(el=>el.classList.remove("active-cell"));
+    document.getElementById("img-"+i).classList.add("active-cell");
+}
+
+document.addEventListener("paste",e=>{
+    if(activeRow===null) return;
+    for(let it of e.clipboardData.items){
+        if(it.type.includes("image")){
+            handleImage(activeRow,it.getAsFile());
+        }
+    }
+});
+
+function deleteRow(i){
+    if(confirm("Delete item?")){
+        items.splice(i,1);
+        render();
+    }
+}
+
+function render(){
+    let total=0;
+    itemTable.innerHTML=itemTable.rows[0].outerHTML;
+
+    items.forEach((it,i)=>{
+        let amt=it.qty*it.rate;
+        total+=amt;
+
+        let r=itemTable.insertRow();
+        r.innerHTML=`
+<td>${i+1}</td>
+
+<td>
+    <input value="${it.product}"
+        onblur="items[${i}].product=this.value">
+</td>
+
+<td id="img-${i}" onclick="setActiveRow(${i})" style="cursor:pointer">
+    ${it.image ? `<img src="${it.image}" class="item-img">` : ""}
+    <span class="no-print"><small>Click & Paste</small></span>
+    <input class="no-print" type="file" accept="image/*"
+        onchange="handleImage(${i},this.files[0])">
+</td>
+
+<td>
+    <select onchange="items[${i}].uom=this.value">
+        ${uomOptions(it.uom)}
+    </select>
+</td>
+
+<td>
+    <input type="number" value="${it.qty}"
+        onblur="items[${i}].qty=this.value;render()">
+</td>
+
+<td>
+    <input type="number" value="${it.rate}"
+        onblur="items[${i}].rate=this.value;render()">
+</td>
+
+<td>${amt.toFixed(2)}</td>
+
+<td class="no-print">
+    <button onclick="deleteRow(${i})">X</button>
+</td>`;
+    });
+
+    grandTotal.innerText=total.toFixed(2);
+}
+
+function saveDoc(){
+    let list=JSON.parse(localStorage.getItem("quotations"))||[];
+    list.push({
+        no:docNo.value,
+        date:docDate.value,
+        customer:{
+            name:cname.value,
+            mobile:cmobile.value,
+            address:caddress.value
+        },
+        items:items,
+        total:grandTotal.innerText
+    });
+    localStorage.setItem("quotations",JSON.stringify(list));
+    localStorage.setItem("qCounter",++counter);
+    docNo.value="QT-"+counter;
+    alert("Quotation Saved");
+}
+
+function exportPDF(){
+    window.print();
+}
+
+addRow();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aone Hospitality Services</title>
+  <link rel="icon" type="image/png" href="logo.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .glass-nav { backdrop-filter: blur(12px); background: rgba(255,255,255,0.85); }
+    .card-hover { transition: all 0.3s ease; }
+    .card-hover:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    .whatsapp_float, .call_float { position: fixed; bottom: 20px; z-index: 50; }
+    .whatsapp_float { right: 20px; }
+    .call_float { left: 20px; }
+  </style>
+</head>
+<body class="bg-gray-50">
+
+  <!-- Navbar -->
+   <header class="bg-white shadow-sm py-4 fixed top-0 w-full z-50">
+        <nav class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="logo.png" alt="Aone Hospitality Services Logo" class="h-10 w-10">
+          <div>
+            <div class="text-lg font-bold text-teal-700">Aone Hospitality Services</div>
+            <div class="text-xs text-gray-500">Wholesale | Corporate Supplies</div>
+          </div>
+            </a>
+      <div class="hidden md:flex space-x-8 font-medium">
+        <a href="index.html" class="hover:text-teal-600 transition">Home</a>
+        <a href="product.html" class="hover:text-teal-600 transition">Products</a>
+        <a href="about.html" class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition">About</a>
+        <a href="contact.html" class="px-4 py-2 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 transition">Contact</a>
+        <a href="qualogin.html" class="px-4 py-2 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 transition">User Login</a>
+        <a href="login.html" class="hover:text-teal-600 transition">Admin Login</a>
+      </div>
+      <button id="mobile-menu-button" class="md:hidden text-gray-700 hover:text-teal-600 focus:outline-none">
+        <svg class="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+        </svg>
+      </button>
+    </nav>
+    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg border-t border-gray-200">
+      <div class="flex flex-col space-y-2 p-4 font-medium">
+        <a href="index.html" class="hover:text-teal-600 transition">Home</a>
+        <a href="product.html" class="hover:text-teal-600 transition">Products</a>
+        <a href="about.html" class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition">About</a>
+        <a href="contact.html" class="px-4 py-2 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 transition">Contact</a>
+        <a href="qualogin.html" class="px-4 py-2 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 transition">User Login</a>
+        <a href="login.html" class="hover:text-teal-600 transition">Admin Login</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative text-white pt-32 pb-28 overflow-hidden">
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('abc.png');"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-blue-800 to-teal-700 opacity-80"></div>
+    <div class="container mx-auto px-6 text-center relative z-10">
+      <h1 data-aos="fade-up" class="text-4xl md:text-6xl font-extrabold mb-6">
+        Experience Unmatched Cleanliness with <span class="text-yellow-300">Aone Hospitality Services</span>
+      </h1>
+      <p data-aos="fade-up" data-aos-delay="200" class="text-lg md:text-xl mb-8 max-w-2xl mx-auto">
+        Premium cleaning & hospitality solutions for homes, hotels & workplaces.
+      </p>
+      <div data-aos="fade-up" data-aos-delay="400" class="flex flex-col md:flex-row gap-4 justify-center">
+        <a href="product.html" class="px-8 py-3 bg-white text-teal-700 font-bold rounded-full shadow hover:scale-105 transition">Explore Products</a>
+        <a href="os.pdf"download class="px-8 py-3 bg-yellow-400 text-gray-900 font-bold rounded-full shadow hover:bg-yellow-500 transition">os </a>
+        <a href="contact.html" class="px-8 py-3 border-2 border-white rounded-full font-bold hover:bg-white hover:text-teal-700 transition">Contact Us</a>
+        <a href="wt.pdf" class="inline-block bg-white text-teal-700 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 hover:scale-105 hover:ring-2 hover:ring-white transition duration-300 transform animate-fade-in-up delay-500" download>
+                web tech
+            </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+<!-- About -->
+<section class="py-24 bg-gradient-to-r from-gray-50 via-white to-gray-100" id="about">
+  <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+
+    <!-- Text Content -->
+    <div data-aos="fade-right">
+      <h2 class="text-4xl md:text-5xl font-extrabold mb-6 text-gray-800 leading-snug">
+        About <span class="text-yellow-300">Aone Hospitality Services</span>
+      </h2>
+      <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+       Savitribai Phule Pune University
+T.Y.B.Sc.(Computer Science) Practical Examination, March/October
+(2019 Pattern)
+CS-367 Lab Course-I Operating System-II
+Duration: 3 Hrs Max. Marks: 35
+Q.1) Write a C Menu driven Program to implement following functionality
+a) Accept Available
+b) Display Allocation, Max
+c) Display the contents of need matrix
+d) Display Available
+Process Allocation Max Available
+A B C A B C A B C
+PO 2 3 2 9 7 5 3 3 2
+P1 4 0 0 5 2 2
+P2 5 0 4 0 4
+P3 4 3 3 4 4 4
+P4 2 2 4 6 5 5
+[15]
+Q.2 Write a simulation program for disk scheduling using FCFS algorithm. Accept
+total number of disk blocks, disk request string, and current head position from the
+user. Display the list of request in the order in which it is served. Also display the
+total number of head moments.
+55, 58, 39, 18, 90, 160, 150, 38, 184
+Start Head Position: 50
+Q.3. Oral/Viva
+1
+[15]
+[05]
+Scanned with CamScanner
+Savitribai Phule Pune University
+T.Y.B.Sc.(Computer Science) Practical Examination, March/October
+(2019 Pattern)
+CS-367 Lab Course-I Operating System-II
+Duration: 3 Hrs Max. Marks: 35
+Q.1 Write a program to simulate Linked file allocation method. Assume disk with n
+number of blocks. Give value of n as input. Randomly mark some block as allocated and
+accordingly maintain the list of free blocks Write menu driver program with menu
+options as mentioned below and implement each option.
+Show Bit Vector
+Create New File
+Show Directory
+Exit
+[15]
+Q.2 Write an MPI program to calculate sum of randomly generated 1000 numbers
+(stored in array) on a cluster [15]
+Q.3. Oral/Viva
+2
+[05]
+Scanned with CamScanner
+Savitribai Phule Pune University
+T.Y.B.Sc.(Computer Science) Practical Examination, March/October
+(2019 Pattern)
+CS-367 Lab Course-I Operating System-II
+Duration: 3 Hrs Max. Marks: 35
+Q.1 Write a C program to simulate Banker's algorithm for the purpose of deadlock
+avoidance. Consider the following snapshot of system, A, B, C and D is the
+resource type.
+Process Allocation Max Available
+A B C D A B C D A B C D
+PO 이 0 1 2 0 0 2 1 5 2 0
+P1 1 0 0 이 7 5 0
+P2 1 3 5 4 2 3 5 6
+P3 0 6 3 2 0 6 5 2
+P4 0 0 1 4 0 6 5 6
+a) Calculate and display the content of need matrix?
+b) Is the system in safe state? If display the safe sequence.
+[15]
+Q.2 Write an MPI program to calculate sum and average of randomly generated 1000
+numbers (stored in array) on a cluster
+Q.3. Oral/Viva
+3
+[15]
+[05]
+Scanned with CamScanner
+Savitribai Phule Pune University
+T.Y.B.Sc.(Computer Science) Practical Examination, March/October
+(2019 Pattern)
+CS-367 Lab Course-I Operating System-II
+Duration: 3 Hrs Max. Marks: 35
+Q.1 Implement the Menu driven Banker's algorithm for accepting Allocation, Max
+fromuser.
+a) Accept Available
+b) Display Allocation, Max
+c) Find Need and display It,
+d) Display Available
+Consider the following snapshot:
+Process
+Consider the system with 3 resources types A,B, and C with 7,2,6 instances respectively.
+Allocation Request
+A B C A B C
+PO 0 1 0 0 0 0
+P1 4 0 0 5 2 2
+P2 5 0 4 1 0 4
+P3 4 3 3 4 4 4
+P4 2 2 4 6 5 5
+[15]
+Q.2 Write a simulation program for disk scheduling using SCAN algorithm. Accept total
+number of disk blocks, disk request string, and current head position from the user.
+Display the list of request in the order in which it is served. Also display the total
+number of head moments.
+86, 147, 91, 170, 95, 130, 102, 70
+Starting Head position= 125
+Direction: Left
+Q.3. Oral/Viva
+4
+[15]
+[05]
+Scanned with CamScanner
+Savitribai Phule Pune University
+T.Y.B.Sc.(Computer Science) Practical Examination, March/October
+(2019 Pattern)
+CS-367 Lab Course-I Operating System-II
+Duration: 3 Hrs Max. Marks: 35
+Q.1 Consider a system with 'm' processes and 'n' resource types. Accept number of
+instances for every resource type. For each process accept the allocation and maximum
+requirement matrices. Write a program to display the contents of need matrix and to
+check if the given request of a process can be granted immediately or not
+[15]
+Q.2 Write an MPI program to find the max number from randomly generated 1000 numbers
+(stored in array) on a cluster (Hint: Use MPI_Reduce) [15]
+Q.3. Oral/Viva
+5
+[05]
+Scanned with CamScanner
+Savitribai Phule Pune University
+T.Y.B.Sc.(Computer Science) Practical Examination, March/October
+(2019 Pattern)
+CS-367 Lab Course-I Operating System-II
+Duration: 3 Hrs Max. Marks: 35
+Q.1 Write a program to simulate Linked file allocation method. Assume disk with n
+number of blocks. Give value of n as input. Randomly mark some block as allocated and
+accordingly maintain the list of free blocks Write menu driver program with menu
+options as mentioned below and implement each option.
+Show Bit Vector
+Create New File
+Show Directory
+Exit
+[15]
+Q.2 Write a simulation program for disk scheduling using C-SCAN algorithm. Accept total
+number of disk blocks, disk request string, and current head position from the user. Display
+the list of request in the order in which it is served. Also display the total number of head
+moments..
+80, 150, 60,135, 40, 35, 170
+Starting Head Position: 70
+Direction: Right
+Q.3. Oral/Viva
+[15]
+[05]
+6
+Scanned with CamScanner
+Savitribai Phule Pune University
+T.Y.B.Sc.(Computer Science) Practical Examination, March/October
+(2019 Pattern)
+CS-367 Lab Course-I Operating System-II
+Duration: 3 Hrs
+Q.1 Consider the following snapshot of the system.
+Max. Marks: 35
+Proces Allocation Max Available
+S
+A B C D A B C D A B C D
+PO 2 0 0 1 4 2 1 2 3 3 2 1
+P1 3 2 1 5 2 5 2
+P2 2 1 0 3 2 3 1 6
+P3 1 3 1 2 1 4 2 4
+P4 1 4 3 2 3 6 6 5
+Using Resource -Request algorithm to Check whether the current system is in safe state
+or not [15]
+Q.2 Write a simulation program for disk scheduling using SCAN algorithm. Accept total
+number of disk blocks, disk request string, and current head position from the user. Display
+the list of request in the order in which it is served. Also display the total number of head
+moments.
+82, 170, 43, 140, 24, 16, 190
+Starting Head Position: 50
+Direction: Right
+Q.3. Oral/Viva
+7
+[15]
+[05]
+Scanned with CamScanner
+Savitribai Phule Pune University
+T.Y.B.Sc.(Computer Science) Practical Examination, March/October
+(2019 Pattern)
+CS-367 Lab Course-I Operating System-II
+Duration: 3 Hrs Max. Marks: 35
+Q.1 Write a program to simulate Contiguous file allocation method. Assume disk with n
+number of blocks. Give value of n as input. Randomly mark some block as allocated and
+accordingly maintain the list of free blocks Write menu driver program with menu
+options as mentioned above and implement each option.
+Show Bit Vector
+Create New File
+Show Directory
+Exit [15]
+Q.2 Write a simulation program for disk scheduling using SSTF algorithm. Accept total
+number of disk blocks, disk request string, and current head position from the user. Display
+the list of request in the order in which it is served. Also display the total number of head
+moments.
+186, 89, 44, 70, 102, 22, 51, 124
+Start Head Position: 70
+Q.3. Oral/Viva
+[15]
+[05]
+8
+Scanned with CamScanner
+Savitribai Phule Pune University
+T.Y.B.Sc.(Computer Science) Practical Examination, March/October
+(2019 Pattern)
+CS-367 Lab Course-I Operating System-II
+Duration: 3 Hrs Max. Marks: 35
+Q.1.Consider the following snapshot of system, A, B, C, D is the resource type.
+Proces Allocation Max Available
+S
+A B C D A B C D A B C D
+PO 0 0 1 2 0 0 1 2 1 5 2 0
+P1 1 0 0 0 1 7 5 0
+P2 1 3 5 4 2 3 5 6
+P3 0 6 3 2 0 6 5 2
+P4 0 0 1 4 0 6 5 6
+Using Resource -Request algorithm to Check whether the current system is in safe state
+or not [15]
+Q.2 Write a simulation program for disk scheduling using LOOK algorithm. Accept total
+number of disk blocks, disk request string, and current head position from the user. Display
+the list of request in the order in which it is served. Also display the total number of head
+moments. [15]
+176, 79, 34, 60, 92, 11, 41, 114
+Starting Head Position: 65
+Direction: Left
+Q.3. Oral/Viva [05]
+9
+Scanned with CamScanner
+Savitribai Phule Pune University
+T.Y.B.Sc.(Computer Science) Practical Examination, March/October
+(2019 Pattern)
+CS-367 Lab Course-I Operating System-II
+Duration: 3 Hrs Max. Marks: 35
+Q.1 Write an MPI program to calculate sum and average of randomly generated 1000
+numbers (stored in array) on a cluster
+[15]
+Q.2 Write a simulation program for disk scheduling using C-SCAN algorithm. Accept
+total number of disk blocks, disk request string, and current head position from the user.
+Display the list of request in the order in which it is served. Also display the total
+number of head moments.
+33, 99, 142, 52, 197, 79, 46, 65
+Start Head Position: 72
+Direction: Left [15]
+Q.3. Oral/Viva
+10
+[05]
+Scanned with CamScanner
+Savitribai Phule Pune University
+T.Y.B.Sc.(Computer Science) Practical Examination, March/October
+(2019 Pattern)
+CS-367 Lab Course-I Operating System-II
+Duration: 3 Hrs Max. Marks: 35
+Q.1 Write a C program to simulate Banker's algorithm for the purpose of
+deadlock avoidance. the following snapshot of system, A, B, C and D are the
+resource type.
+Proces Allocation Max Available
+S
+A B C A B C A B C
+PO 0 1 0 0 이 이 0 0
+P1 2 0 0 2 0 2
+P2 3 이 3 0 0 0
+P3 2 1 1 1 0 0
+P4 0 0 2 0 0 2
+Implement the following Menu.
+a) Accept Available
+b) Display Allocation, Max
+c) Display the contents of need matrix
+d) Display Available [15]
+Q.2 Write an MPI program to find the min number from randomly generated 1000 numbers
+(stored in array) on a cluster (Hint: Use MPI_Reduce) [15]
+Q.3. Oral/Viva
+11
+[05]
+Scanned with CamScanner
+Savitribai Phule Pune University
+T.Y.B.Sc.(Computer Science) Practical Examination, March/October
+(2019 Pattern)
+CS-367 Lab Course-I Operating System-II
+Duration: 3 Hrs Max. Marks: 35
+Q.1 Write an MPI program to calculate sum and average randomly generated 1000
+numbers (stored in array) on a cluster. [15]
+Q.2 Write a simulation program for disk scheduling using C-LOOK algorithm. Accept
+total number of disk blocks, disk request string, and current head position from the user.
+Display the list of request in the order in which it is served. Also display the total number
+of head moments.
+23, 89, 132, 42, 187, 69, 36, 55
+Start Head Position: 40
+Direction: Right
+Q.3. Oral/Viva
+12
+[15]
+[05]
+Scanned with CamScanner
+Savitribai Phule Pune University
+T.Y.B.Sc.(Computer Science) Practical Examination, March/October
+(2019 Pattern)
+CS-367 Lab Course-I Operating System-IІ
+Duration: 3 Hrs Max. Marks: 35
+Q.1 Write a C program to simulate Banker's algorithm for the purpose of deadlock
+avoidance.The following snapshot of system, A, B, C and D are the resource type.
+Proces Allocation Max Available
+S
+A B C A B C A B C
+PO 0 1 0 0 Ο 0 0 0 0
+P1 2 0 0 2 0 2
+P2 3 0 3 0 0 0
+P3 2 1 1 1 0 0
+P4 0 0 2 0 Ο 2
+a) Calculate and display the content of need matrix?
+b) Is the system in safe state? If display the safe sequence. [15]
+Q.2 Write a simulation program for disk scheduling using SCAN algorithm. Accept total
+number of disk blocks, disk request string, and current head position from the user. Display
+the list of request in the order in which it is served. Also display the total number of head
+moments.
+176, 79, 34, 60, 92, 11, 41, 114
+Starting Head Position: 65
+Direction: Left [15]
+Q.3. Oral/Viva
+13
+[05]
+Scanned with CamScanner
+Savitribai Phule Pune University
+T.Y.B.Sc.(Computer Science) Practical Examination, March/October
+(2019 Pattern)
+CS-367 Lab Course-I Operating System-II
+Duration: 3 Hrs Max. Marks: 35
+Q.1 Write a program to simulate Sequential (Contiguous) file allocation method.
+Assume disk with n number of blocks. Give value of n as input. Randomly mark some
+block as allocated and accordingly maintain the list of free blocks Write menu driver
+program with menu options as mentioned below and implement each option.
+Show Bit Vector
+Show Directory
+Delete File
+Exit [15]
+Q.2 Write a simulation program for disk scheduling using SSTF algorithm. Accept total
+number of disk blocks, disk request string, and current head position from the user. Display
+the list of request in the order in which it is served. Also display the total number of head
+moments.
+55, 58, 39, 18, 90, 160, 150, 38, 184
+Start Head Position: 50
+Q.3. Oral/Viva
+14
+[15]
+[05]
+Scanned with CamScanner
+Savitribai Phule Pune University
+T.Y.B.Sc.(Computer Science) Practical Examination, March/October
+(2019 Pattern)
+CS-367 Lab Course-I Operating System-II
+Duration: 3 Hrs Max. Marks: 35
+Q.1 Write a program to simulate Linked file allocation method. Assume disk with n
+number of blocks. Give value of n as input. Randomly mark some block as allocated and
+accordingly maintain the list of free blocks Write menu driver program with menu
+options as mentioned below and implement each option.
+Show Bit Vector
+Create New File
+Show Directory
+Exit [15]
+Q.2 Write a simulation program for disk scheduling using C-SCAN algorithm. Accept total
+number of disk blocks, disk request string, and current head position from the user. Display
+the list of request in the order in which it is served. Also display the total number of head
+moments..
+80, 150, 60,135, 40, 35, 170
+Starting Head Position: 70
+Direction: Right
+Q.3. Oral/Viva
+[15]
+[05]
+15
+Scanned with CamScanner
+Savitribai Phule Pune University
+T.Y.B.Sc.(Computer Science) Practical Examination, March/October
+(2019 Pattern)
+CS-367 Lab Course-I Operating System-IІ
+Duration: 3 Hrs Max. Marks: 35
+Q.1 Write a program to simulate Sequential (Contiguous) file allocation method.
+Assume disk with n number of blocks. Give value of n as input. Randomly mark some
+block as allocated and accordingly maintain the list of free blocks Write menu driver
+program with menu options as mentioned below and implement each option
+Show Bit Vector
+Create New File
+Show Directory
+Exit [15]
+Q.2 Write an MPI program to find the min number from randomly generated 1000 numbers
+(stored in array) on a cluster (Hint: Use MPI_Reduce) [15]
+Q.3. Oral/Viva
+16
+[05]
+Scanned with CamScanner
+Savitribai Phule Pune University
+T.Y.B.Sc.(Computer Science) Practical Examination, March/October
+(2019 Pattern)
+CS-367 Lab Course-I Operating System-II
+Duration: 3 Hrs Max. Marks: 35
+Q.1 Write a program to simulate Indexed file allocation method. Assume disk with n
+number of blocks. Give value of n as input. Randomly mark some block as allocated and
+accordingly maintain the list of free blocks Write menu driver program with menu
+options as mentioned above and implement each option.
+Show Bit Vector
+Show Directory
+Delete Already File
+Exit [15]
+Q.2 Write a simulation program for disk scheduling using LOOK algorithm. Accept total
+number of disk blocks, disk request string, and current head position from the user.
+Display the list of request in the order in which it is served. Also display the total number
+of head moments.
+23, 89, 132, 42, 187, 69, 36, 55
+Start Head Position: 40
+Direction: Left
+Q.3. Oral/Viva
+17
+[15]
+[05]
+Scanned with CamScanner
+Savitribai Phule Pune University
+T.Y.B.Sc.(Computer Science) Practical Examination, March/October
+(2019 Pattern)
+CS-367 Lab Course-I Operating System-II
+Duration: 3 Hrs Max. Marks: 35
+Q.1 Write a program to simulate Indexed file allocation method. Assume disk with n
+number of blocks. Give value of n as input. Randomly mark some block as allocated and
+accordingly maintain the list of free blocks Write menu driver program with menu
+options as mentioned above and implement each option.
+Show Bit Vector
+Create New File
+Show Directory
+Delete File
+Exit [15]
+Q.2 Write a simulation program for disk scheduling using SCAN algorithm. Accept
+total number of disk blocks, disk request string, and current head position from the user.
+Display the list of request in the order in which it is served. Also display the total
+number of head moments.
+33, 99, 142, 52, 197, 79, 46, 65
+Start Head Position: 72
+Direction: Right
+Q.3. Oral/Viva
+[15]
+[05]
+18
+Scanned with CamScanner
+Savitribai Phule Pune University
+T.Y.B.Sc.(Computer Science) Practical Examination, March/October
+(2019 Pattern)
+CS-367 Lab Course-I Operating System-II
+Duration: 3 Hrs Max. Marks: 35
+Q.1 Write a C program to simulate Banker's algorithm for the purpose of
+deadlock avoidance.Consider the following snapshot of system, A, B, C and D
+is the resource type.
+Proces
+S
+Allocation Max Available
+A B C D A B C D A B C D
+PO 0 3 2 4 6 5 4 4 3 4 4 2
+P1 1 2 0 1 4 4 4 4
+P2 0 0 0 0 0 0 1 2
+P3 3 3 2 2 3 9 3 4
+P4 1 4 3 2 2 5 3 3
+P5 2 4 1 4 4 6 3 4
+a) Calculate and display the content of need matrix?
+b) Is the system in safe state? If display the safe sequence.
+[15]
+Q.2 Write a simulation program for disk scheduling using C-SCAN algorithm. Accept
+total number of disk blocks, disk request string, and current head position from the user.
+Display the list of request in the order in which it is served. Also display the total number
+of head moments.
+23, 89, 132, 42, 187, 69, 36, 55
+Start Head Position: 40
+Direction: Left
+Q.3. Oral/Viva
+19
+[15]
+[05]
+Scanned with CamScanner
+Savitribai Phule Pune University
+T.Y.B.Sc.(Computer Science) Practical Examination, March/October
+(2019 Pattern)
+CS-367 Lab Course-I Operating System-II
+Duration: 3 Hrs Max. Marks: 35
+Q.1 Write a simulation program for disk scheduling using SCAN algorithm. Accept total
+number of disk blocks, disk request string, and current head position from the user.
+Display the list of request in the order in which it is served. Also display the total number
+of head moments.
+33, 99, 142, 52, 197, 79, 46, 65
+Start Head Position: 72
+Direction: User defined
+[15]
+Q.2 Write an MPI program to find the max number from randomly generated 1000 numbers
+(stored in array) on a cluster (Hint: Use MPI_Reduce) [15]
+Q.3. Oral/Viva
+20
+[05]
+Scanned with CamScanner
+Savitribai Phule Pune University
+T.Y.B.Sc.(Computer Science) Practical Examination, March/October
+(2019 Pattern)
+CS-367 Lab Course-I Operating System-II
+Duration: 3 Hrs Max. Marks: 35
+Q.1 Write a simulation program for disk scheduling using FCFS algorithm. Accept total
+number of disk blocks, disk request string, and current head position from the user.
+Display the list of request in the order in which it is served. Also display the total number
+of head moments.
+55, 58, 39, 18, 90, 160, 150, 38, 184
+Start Head Position: 50
+[15]
+Q.2 Write an MPI program to calculate sum of all even randomly generated 1000
+numbers (stored in array) on a cluster
+Q.3. Oral/Viva
+21
+[15]
+[05]
+Scanned with CamScanner
+Savitribai Phule Pune University
+T.Y.B.Sc.(Computer Science) Practical Examination, March/October
+(2019 Pattern)
+CS-367 Lab Course-I Operating System-IІ
+Duration: 3 Hrs Max. Marks: 35
+Q.1 Write an MPI program to calculate sum of all odd randomly generated 1000 numbers
+(stored in array) on a cluster. [15]
+Q.2 Write a program to simulate Sequential (Contiguous) file allocation method.
+Assume disk with n number of blocks. Give value of n as input. Randomly mark some
+block as allocated and accordingly maintain the list of free blocks Write menu driver
+program with menu options as mentioned below and implement each option
+이 Show Bit Vector
+이
+Delete already created file
+Exit [15]
+Q.3. Oral/Viva
+22
+[05]
+Scanned with CamScanner
+Savitribai Phule Pune University
+T.Y.B.Sc.(Computer Science) Practical Examination, March/October
+(2019 Pattern)
+CS-367 Lab Course-I Operating System-II
+Duration: 3 Hrs Max. Marks: 35
+Q.1 Consider a system with 'm' processes and 'n' resource types. Accept number of
+instances for every resource type. For each process accept the allocation and maximum
+requirement matrices. Write a program to display the contents of need matrix and to
+check if the given request of a process can be granted immediately or not
+[15]
+Q.2 Write a simulation program for disk scheduling using SSTF algorithm. Accept total
+number of disk blocks, disk request string, and current head position from the user.
+Display the list of request in the order in which it is served. Also display the total number
+of head moments.
+24, 90, 133, 43, 188, 70, 37, 55
+Start Head Position: 58
+Q.3. Oral/Viva
+23
+[15]
+[05]
+Scanned with CamScanner
+Savitribai Phule Pune University
+T.Y.B.Sc.(Computer Science) Practical Examination, March/October
+(2019 Pattern)
+CS-367 Lab Course-I Operating System-II
+Duration: 3 Hrs Max. Marks: 35
+Q.1 Write an MPI program to calculate sum of all odd randomly generated 1000 numbers
+(stored in array) on a cluster. [15]
+Q.2 Write a C program to simulate Banker's algorithm for the purpose of deadlock
+avoidance. The following snapshot of system, A, B, C and D are the resource type.
+Proces Allocation
+S
+Max Available
+A B C A B C A B C
+PO 0 1 0 0 0 0 0 0 0
+P1 2 이 0 2 0 2
+P2 3 이 3 0 0 0
+P3 2 1 1 1 0 0
+P4 0 0 2 이 0 2
+a) Calculate and display the content of need matrix?
+b) Is the system in safe state? If display the safe sequence. [15]
+Q.3. Oral/Viva
+24
+[05]
+Scanned with CamScanner
+Savitribai Phule Pune University
+T.Y.B.Sc.(Computer Science) Practical Examination, March/October
+(2019 Pattern)
+CS-367 Lab Course-I Operating System-II
+Duration: 3 Hrs Max. Marks: 35
+Q.1 Write a simulation program for disk scheduling using LOOK algorithm. Accept total
+number of disk blocks, disk request string, and current head position from the user.
+Display the list of request in the order in which it is served. Also display the total number
+of head moments.
+86, 147, 91, 170, 95, 130, 102, 70
+Starting Head position= 125
+Direction: User Defined
+[15]
+Q.2 Write a program to simulate Linked file allocation method. Assume disk with n
+number of blocks. Give value of n as input. Randomly mark some block as allocated and
+accordingly maintain the list of free blocks Write menu driver program with menu
+options as mentioned below and implement each option.
+Show Bit Vector
+Create New File
+Show Directory
+Exit [15]
+Q.3. Oral/Viva
+25
+[05]
+Scanned with CamScanner
+Savitribai Phule Pune University
+T.Y.B.Sc.(Computer Science) Practical Examination, March/October
+(2019 Pattern)
+CS-367 Lab Course-I Operating System-II
+Duration: 3 Hrs Max. Marks: 35
+Q.1 Write a C program to simulate Banker's algorithm for the purpose of
+deadlock avoidance. Consider the following snapshot of system, A, B, C and D
+is the resource type.
+Proces Allocation Max Available
+S
+A B C D A B C D A B C D
+PO 0 0 1 2 0 0 1 2 1 5 2 이
+P1 0 0 0 1 7 5 0
+P2 1 3 5 4 2 3 5 6
+P3 0 6 3 2 0 6 5 2
+P4 0 0 1 4 0 6 5 6
+a) Calculate and display the content of need matrix?
+b) Is the system in safe state? If display the safe sequence. [15]
+Q.2 Write a simulation program for disk scheduling using FCFS algorithm. Accept total
+number of disk blocks, disk request string, and current head position from the user.
+Display the list of request in the order in which it is served. Also display the total number
+of head moments.
+56, 59, 40, 19, 91, 161, 151, 39, 185
+Start Head Position: 48
+Q.3. Oral/Viva
+26
+[15]
+[05]
+Scanned with CamScanner
+Savitribai Phule Pune University
+T.Y.B.Sc.(Computer Science) Practical Examination, March/October
+(2019 Pattern)
+CS-367 Lab Course-I Operating System-II
+Duration: 3 Hrs Max. Marks: 35
+Q.1 Write a simulation program for disk scheduling using LOOK algorithm. Accept total
+number of disk blocks, disk request string, and current head position from the user. Display
+the list of request in the order in which it is served. Also display the total number of head
+moments.
+176, 79, 34, 60, 92, 11, 41, 114
+Starting Head Position: 65
+Direction: Right
+[15]
+Q.2 Write an MPI program to find the min number from randomly generated 1000 numbers
+(stored in array) on a cluster (Hint: Use MPI_Reduce) [15]
+Q.3. Oral/Viva
+27
+[05]
+Scanned with CamScanner
+Savitribai Phule Pune University
+T.Y.B.Sc.(Computer Science) Practical Examination, March/October
+(2019 Pattern)
+CS-367 Lab Course-I Operating System-II
+Duration: 3 Hrs Max. Marks: 35
+Q.1 Write a simulation program for disk scheduling using C-LOOK algorithm. Accept total
+number of disk blocks, disk request string, and current head position from the user. Display
+the list of request in the order in which it is served. Also display the total number of head
+moments.
+56, 59, 40, 19, 91, 161, 151, 39, 185
+Start Head Position: 48
+Direction: User Defined
+[15]
+Q.2 Write an MPI program to calculate sum of randomly generated 1000 numbers
+(stored in array) on a cluster [15]
+Q.3. Oral/Viva
+28
+[05]
+Scanned with CamScanner
+Savitribai Phule Pune University
+T.Y.B.Sc.(Computer Science) Practical Examination, March/October
+(2019 Pattern)
+CS-367 Lab Course-I Operating System-IІ
+Duration: 3 Hrs Max. Marks: 35
+Q.1 Write an MPI program to calculate sum of all even randomly generated 1000 numbers
+(stored in array) on a cluster. [15]
+Q.2 Write a simulation program for disk scheduling using C-LOOK algorithm. Accept total
+number of disk blocks, disk request string, and current head position from the user. Display
+the list of request in the order in which it is served. Also display the total number of head
+moments.. [15]
+80, 150, 60,135, 40, 35, 170
+Starting Head Position: 70
+Direction: Right
+Q.3. Oral/Viva [05]
+29
+Scanned with CamScanner
+Savitribai Phule Pune University
+T.Y.B.Sc.(Computer Science) Practical Examination, March/October
+(2019 Pattern)
+CS-367 Lab Course-I Operating System-IІ
+Duration: 3 Hrs Max. Marks: 35
+Q.1 Write an MPI program to find the min number from randomly generated 1000 numbers
+(stored in array) on a cluster (Hint: Use MPI_Reduce) [15]
+Q.2 Write a simulation program for disk scheduling using FCFS algorithm. Accept total
+number of disk blocks, disk request string, and current head position from the user. Display
+the list of request in the order in which it is served. Also display the total number of head
+moments.
+65, 95, 30, 91, 18, 116, 142, 44, 168
+Start Head Position: 52
+Q.3. Oral/Viva
+30
+[15]
+[05]
+Scanned with CamScanner
+      </p>
+
+      <!-- Feature Points -->
+      <div class="grid sm:grid-cols-2 gap-6 text-left">
+        <div class="flex items-start space-x-3">
+          <span class="bg-yellow-300 text-white rounded-full p-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+          </span>
+          <p class="text-gray-700 font-medium">Serving 500+ satisfied clients nationwide</p>
+        </div>
+        <div class="flex items-start space-x-3">
+          <span class="bg-yellow-300 text-white rounded-full p-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+          </span>
+          <p class="text-gray-700 font-medium">Eco-friendly and sustainable solutions</p>
+        </div>
+        <div class="flex items-start space-x-3">
+          <span class="bg-yellow-300 text-white rounded-full p-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+          </span>
+          <p class="text-gray-700 font-medium">Trusted partner for top hotels & corporates</p>
+        </div>
+        <div class="flex items-start space-x-3">
+          <span class="bg-yellow-300 text-white rounded-full p-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+          </span>
+          <p class="text-gray-700 font-medium">Commitment to quality & customer-first service</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Image Content -->
+    <div data-aos="fade-left" class="flex justify-center">
+      <img src="abc.png" 
+           alt="About Aone Hospitality" 
+           class="rounded-2xl shadow-2xl w-full max-w-lg object-cover">
+    </div>
+  </div>
+</section>
+
+
+  <!-- Products -->
+  <section class="py-20 bg-gray-50" id="products">
+    <div class="container mx-auto px-6 text-center">
+      <h2 data-aos="fade-up" class="text-3xl md:text-4xl font-bold mb-12">Our <span class="text-yellow-300">Products</span></h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+       <div data-aos="zoom-in" data-aos-delay="450" class="bg-white p-8 rounded-xl shadow card-hover">
+          <h3 class="text-xl font-semibold mb-3">Hospitality Essentials/Cleanliness Products</h3>
+           <img src="all products.jpeg" alt="Crockery" class="mx-auto mb-4 rounded-lg shadow-md h-40 object-cover">
+          <p class="text-gray-600">Top-tier cleaning supplies ensuring hygiene & safety.</p>
+        </div>
+        <div data-aos="zoom-in" data-aos-delay="450" class="bg-white p-8 rounded-xl shadow card-hover">
+          <h3 class="text-xl font-semibold mb-3">Stationery Supplies</h3>
+           <img src="allsta.jpeg" alt="Crockery" class="mx-auto mb-4 rounded-lg shadow-md h-40 object-cover">
+          <p class="text-gray-600">High-quality stationery for smooth business operations.</p>
+        </div>
+        <!-- New Products -->
+        <div data-aos="zoom-in" data-aos-delay="450" class="bg-white p-8 rounded-xl shadow card-hover">
+          <h3 class="text-xl font-semibold mb-3">Crockery Products</h3>
+          <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d" alt="Crockery" class="mx-auto mb-4 rounded-lg shadow-md h-40 object-cover">
+          <p class="text-gray-600">Premium crockery for homes, hotels & restaurants.</p>
+        </div>
+        <div data-aos="zoom-in" data-aos-delay="600" class="bg-white p-8 rounded-xl shadow card-hover">
+          <h3 class="text-xl font-semibold mb-3">Office Electronics</h3>
+          <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c" alt="Office Electronics" class="mx-auto mb-4 rounded-lg shadow-md h-40 object-cover">
+          <p class="text-gray-600">Modern office electronic gadgets to boost productivity.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Employee & Transport Sections Added -->
+
+  <!-- Number of Employees Section -->
+  <section class="py-20 bg-gray-50" id="employees">
+    <div class="container mx-auto px-6 text-center">
+      <h2 data-aos="fade-up" class="text-3xl md:text-4xl font-bold mb-12">
+        Number of <span class="text-yellow-300">Employees</span> by Designation
+      </h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div data-aos="fade-up" class="bg-white p-8 rounded-xl shadow card-hover">
+          <h3 class="text-xl font-semibold mb-3">Supervisors</h3>
+          <p class="text-gray-600 text-lg">5 Employees</p>
+        </div>
+        <div data-aos="fade-up" data-aos-delay="100" class="bg-white p-8 rounded-xl shadow card-hover">
+          <h3 class="text-xl font-semibold mb-3">Housekeeping Staff</h3>
+          <p class="text-gray-600 text-lg">40 Employees</p>
+        </div>
+        <div data-aos="fade-up" data-aos-delay="200" class="bg-white p-8 rounded-xl shadow card-hover">
+          <h3 class="text-xl font-semibold mb-3">Technicians</h3>
+          <p class="text-gray-600 text-lg">10 Employees</p>
+        </div>
+        <div data-aos="fade-up" data-aos-delay="300" class="bg-white p-8 rounded-xl shadow card-hover">
+          <h3 class="text-xl font-semibold mb-3">Drivers</h3>
+          <p class="text-gray-600 text-lg">6 Employees</p>
+        </div>
+        <div data-aos="fade-up" data-aos-delay="400" class="bg-white p-8 rounded-xl shadow card-hover">
+          <h3 class="text-xl font-semibold mb-3">Admin & Support</h3>
+          <p class="text-gray-600 text-lg">4 Employees</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mode of Transport Section -->
+  <section class="py-20 bg-gradient-to-r from-teal-600 to-blue-700 text-white" id="transport">
+    <div class="container mx-auto px-6 text-center">
+      <h2 data-aos="fade-up" class="text-3xl md:text-4xl font-bold mb-12">
+        Mode of <span class="text-yellow-300">Transport</span>
+      </h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div data-aos="zoom-in" class="p-8 bg-white/10 rounded-xl card-hover">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mx-auto mb-4 text-yellow-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 13V6a1 1 0 011-1h14a1 1 0 011 1v7m-2 4a2 2 0 11-4 0m-6 0a2 2 0 11-4 0m0 0H5a1 1 0 01-1-1v-1h16v1a1 1 0 01-1 1h-1z" />
+          </svg>
+          <h3 class="text-xl font-semibold">Company Vans</h3>
+        </div>
+        <div data-aos="zoom-in" data-aos-delay="100" class="p-8 bg-white/10 rounded-xl card-hover">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mx-auto mb-4 text-yellow-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3zm9 0c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3z" />
+          </svg>
+          <h3 class="text-xl font-semibold">Public Transport</h3>
+        </div>
+        <div data-aos="zoom-in" data-aos-delay="200" class="p-8 bg-white/10 rounded-xl card-hover">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mx-auto mb-4 text-yellow-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M7 12a2 2 0 114 0m2 0a2 2 0 114 0" />
+          </svg>
+          <h3 class="text-xl font-semibold">Two-Wheelers</h3>
+        </div>
+        <div data-aos="zoom-in" data-aos-delay="300" class="p-8 bg-white/10 rounded-xl card-hover">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mx-auto mb-4 text-yellow-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6l4 2" />
+          </svg>
+          <h3 class="text-xl font-semibold">Bicycles</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Company Highlight -->
+  <section class="py-20 bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 text-white">
+    <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+      <div data-aos="fade-right">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">A Company Built on <span class="text-gray-900">Trust & Quality</span></h2>
+        <p class="text-lg mb-6">
+          With years of experience, Aone Hospitality Services has become a trusted partner for top hotels, corporates, and households. 
+          Our commitment to quality and innovation ensures that we provide only the best for our clients.
+        </p>
+        <p class="font-semibold">✨ Serving 500+ clients across India with pride.</p>
+      </div>
+        <div data-aos="fade-left">
+      <!-- Added your uploaded image here -->
+      <img src="https://thumbs.dreamstime.com/b/flat-gold-company-core-values-icon-set-innovation-stability-security-reliability-legal-sensitivity-trust-high-standard-quality-191050758.jpg" 
+           alt="Customer Trust - Aone Hospitality" 
+           class="rounded-2xl shadow-2xl w-full max-w-lg object-cover">
+    </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="py-20 bg-gradient-to-r from-blue-700 to-teal-700 text-white">
+    <div class="container mx-auto px-6 text-center">
+      <h2 data-aos="fade-up" class="text-3xl md:text-4xl font-bold mb-12">Why Choose <span class="text-yellow-300">Us</span>?</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div data-aos="flip-left" class="p-8 bg-white/10 rounded-xl card-hover">
+          <h3 class="text-xl font-semibold mb-3">Superior Quality</h3>
+          <p>Our products are rigorously tested for the highest standards.</p>
+        </div>
+        <div data-aos="flip-left" data-aos-delay="150" class="p-8 bg-white/10 rounded-xl card-hover">
+          <h3 class="text-xl font-semibold mb-3">Comprehensive Range</h3>
+          <p>From hospitality to stationery — we cover all essentials.</p>
+        </div>
+        <div data-aos="flip-left" data-aos-delay="300" class="p-8 bg-white/10 rounded-xl card-hover">
+          <h3 class="text-xl font-semibold mb-3">Customer First</h3>
+          <p>Exceptional support and satisfaction guaranteed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="py-20 bg-white text-center" id="contact">
+    <h2 data-aos="fade-up" class="text-3xl md:text-4xl font-bold mb-6">Get in Touch</h2>
+    <p class="mb-10 text-lg text-gray-600">We’d love to help you with our products & services.</p>
+    <div class="flex flex-col sm:flex-row justify-center gap-4">
+      <a href="mailto:aonehospitalitys@gmail.com" class="px-6 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition">Email Us</a>
+      <a href="https://wa.me/919867531298" class="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">WhatsApp</a>
+      <a href="tel:+917387869062" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">Call Us</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-400 py-8">
+    <div class="container mx-auto px-6 text-center">
+      <p>&copy; 2025 Aone Hospitality Services. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Floating Buttons -->
+  <div class="whatsapp_float">
+    <a href="https://wa.me/919867531298" target="_blank">
+      <img src="wp.png" alt="WhatsApp" width="55" />
+    </a>
+  </div>
+  <div class="call_float">
+    <a href="tel:+917387869062" target="_blank">
+      <img src="call.png" alt="Call" width="55" />
+    </a>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
+    const mobileMenuBtn = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>

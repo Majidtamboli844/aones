@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>A One Hospitality Services | Invoice / Delivery Challan</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="icon" type="image/png" href="logo.png">
+
+
+<style>
+:root{
+    --primary:#0b3c5d;
+    --border:#d1d5db;
+    --light:#e5ecf2;
+}
+
+body{
+    font-family:Segoe UI,Arial,sans-serif;
+    background:#f4f6f8;
+    padding:15px;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    background:#fff;
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+
+.header{
+    background:var(--primary);
+    color:#fff;
+    padding:15px;
+    display:flex;
+    gap:15px;
+    align-items:center;
+}
+
+.header img{
+    height:60px;
+    background:#fff;
+    padding:5px;
+    border-radius:4px;
+}
+
+.content{padding:20px}
+
+h2{text-align:center;color:var(--primary)}
+
+.row{
+    display:flex;
+    gap:15px;
+    margin-bottom:10px;
+    flex-wrap:wrap;
+}
+
+.row div{flex:1;min-width:220px}
+
+label{font-size:13px;font-weight:600}
+
+input,select,textarea{
+    width:100%;
+    padding:6px;
+    border:1px solid var(--border);
+    border-radius:4px;
+    margin-top:4px;
+}
+
+.customer-box{
+    border:1px solid var(--border);
+    padding:10px;
+    background:#fafafa;
+    margin-bottom:15px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+    font-size:13px;
+}
+
+th,td{
+    border:1px solid var(--border);
+    padding:6px;
+    text-align:center;
+}
+
+th{background:var(--light)}
+
+.total{
+    text-align:right;
+    font-size:18px;
+    margin-top:15px;
+    font-weight:bold;
+    color:var(--primary);
+}
+
+button{
+    padding:8px 14px;
+    background:var(--primary);
+    color:#fff;
+    border:none;
+    border-radius:4px;
+    margin:5px;
+    cursor:pointer;
+}
+
+@media print{
+    .no-print {
+        display: none !important;
+    }
+
+    body{
+        background:#fff;
+        -webkit-print-color-adjust:exact !important;
+        print-color-adjust:exact !important;
+    }
+
+    button,
+    .controls{
+        display:none !important;
+    }
+
+    .container{
+        box-shadow:none;
+    }
+
+    /* REMOVE INPUT BOXES */
+    input,
+    textarea,
+    select{
+        border:none !important;
+        background:transparent !important;
+        box-shadow:none !important;
+        outline:none !important;
+        padding:0 !important;
+        margin:0 !important;
+        font-size:12px !important;
+        appearance:none;
+        -webkit-appearance:none;
+    }
+
+    /* TABLE LOOKS LIKE TEXT */
+    table{
+        border-collapse:collapse;
+    }
+
+    th{
+        background:#e5ecf2 !important;
+        color:#000 !important;
+        font-weight:600;
+    }
+
+    td{
+        background:#fff !important;
+    }
+}
+
+</style>
+</head>
+
+<body>
+    <!-- TOP FUNCTION BAR -->
+<div class="hidden md:flex space-x-6 bg-white p-4 shadow-md border-b no-print">
+
+    <a href="index.html"
+       class="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300 shadow-md">
+       Home
+    </a>
+
+    <a href="javascript:void(0)"
+       onclick="saveDoc()"
+       class="px-5 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition duration-300 shadow-md">
+       💾 Save
+    </a>
+
+    <a href="javascript:void(0)"
+       onclick="window.print()"
+       class="px-5 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition duration-300 shadow-md">
+       🖨 Print
+    </a>
+
+    <a href="javascript:void(0)"
+       onclick="openManager()"
+       class="px-5 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition duration-300 shadow-md">
+       📂 Invoice Manager
+    </a>
+    <a href="quotation.html"
+       class="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300 shadow-md">
+       Quotation
+    </a>
+
+</div>
+
+
+<div class="container" id="invoice">
+
+<div class="header">
+    <img src="https://aonehospitalitys.com/logo.png">
+    <div>
+        <h3>A One Hospitality Services</h3>
+        <small>Stationery | Housekeeping | Hospitality</small>
+    </div>
+</div>
+
+<div class="content">
+
+<h2>
+<select id="docType" onchange="switchType()">
+    <option value="invoice">INVOICE</option>
+    <option value="challan">DELIVERY CHALLAN</option>
+</select>
+</h2>
+
+<div class="row">
+    <div>
+        <label>Invoice / Challan No</label>
+        <input id="docNo" readonly>
+    </div>
+    <div>
+        <label>Date</label>
+        <input type="date" id="docDate">
+    </div>
+</div>
+
+<div class="customer-box">
+<b>Customer Details</b>
+<div class="row">
+    <div><input id="cname" placeholder="Customer Name"></div>
+    <div><input id="cmobile" placeholder="Mobile"></div>
+</div>
+<div class="row">
+    <div><textarea id="caddress" rows="2" placeholder="Address"></textarea></div>
+    
+</div>
+</div>
+
+<table id="itemTable"></table>
+
+<button onclick="addRow()">+ Add Item</button>
+<button onclick="saveDoc()">💾 Save</button>
+<button onclick="window.print()">🖨 Print</button>
+<button onclick="openManager()">📂 Invoice Manager</button>
+
+<div class="total" id="totalBox">Total ₹ <span id="grandTotal">0.00</span></div>
+<div class="total" id="qtyBox" style="display:none">
+    Total Qty : <span id="totalQty">0</span>
+</div>
+
+<div class="footer">
+    <div>
+        <b>Terms & Conditions</b>
+        <p>Goods once sold will not be taken back.</p>
+    </div>
+    <div style="text-align:right">
+        <b>For A One Hospitality Services</b><br><br>
+        Authorized Signatory
+    </div>
+</div>
+</div>
+</div>
+
+<script>
+/* ================== GLOBALS ================== */
+let items = [];
+let counter = Number(localStorage.getItem("counter") || 1001);
+let editInfo = null;
+
+docNo.value = "AONE-" + counter;
+
+/* ================== UOM OPTIONS ================== */
+function uomOptions(selected){
+    const list = [
+        "Nos","Can","Pkt","Set","Box","Roll",
+        "Pair","Kg","Gram","Lit","ML",
+        "Meter","Pack"
+    ];
+    return list.map(u =>
+        `<option ${u===selected?"selected":""}>${u}</option>`
+    ).join("");
+}
+
+/* ================== LOAD FROM MANAGER ================== */
+function loadFromManager(){
+    let edit = localStorage.getItem("editDoc");
+    if(!edit) return;
+
+    editInfo = JSON.parse(edit);
+
+    let list = JSON.parse(localStorage.getItem(editInfo.type)) || [];
+    let data = list[editInfo.index];
+    if(!data) return;
+
+    docType.value = data.type;
+    docNo.value = data.no;
+    docDate.value = data.date || "";
+
+    cname.value = data.customer.name || "";
+    cmobile.value = data.customer.mobile || "";
+    caddress.value = data.customer.address || "";
+
+    items = data.items || [];
+
+    switchType();
+}
+
+/* ================== BUILD TABLE ================== */
+function buildTable(){
+    itemTable.innerHTML =
+        (docType.value === "invoice")
+        ? `<tr>
+            <th>Sr</th>
+            <th>Description</th>
+            <th>UOM</th>
+            <th>Qty</th>
+            <th>Rate</th>
+            <th>Amount</th>
+            <th class="no-print">❌</th>
+           </tr>`
+        : `<tr>
+            <th>Sr</th>
+            <th>Description</th>
+            <th>UOM</th>
+            <th>Qty</th>
+            <th class="no-print">❌</th>
+           </tr>`;
+    render();
+}
+
+/* ================== ADD ITEM ================== */
+function addRow(){
+    items.push({
+        desc: "",
+        uom: "Nos",
+        qty: 1,
+        rate: 0
+    });
+    render();
+}
+
+/* ================== UPDATE FUNCTIONS ================== */
+function updateSilent(i, field, value){
+    items[i][field] = value;
+}
+
+function updateCalc(i, field, value){
+    items[i][field] = value;
+    render();
+}
+
+/* ================== DELETE ITEM ================== */
+function deleteRow(index){
+    if(confirm("Delete this item?")){
+        items.splice(index, 1);
+        render();
+    }
+}
+
+/* ================== RENDER TABLE ================== */
+function render(){
+    let totalAmount = 0;
+    let totalQty = 0;
+
+    // keep header
+    itemTable.innerHTML = itemTable.rows[0].outerHTML;
+
+    items.forEach((i, n)=>{
+        let qty = Number(i.qty) || 0;
+        let rate = Number(i.rate) || 0;
+        let amount = qty * rate;
+
+        totalAmount += amount;
+        totalQty += qty;
+
+        let row = itemTable.insertRow();
+
+        if(docType.value === "invoice"){
+            row.innerHTML = `
+            <td>${n+1}</td>
+
+            <td>
+                <input value="${i.desc}"
+                       onblur="updateSilent(${n},'desc',this.value)">
+            </td>
+
+            <td>
+                <select onchange="updateSilent(${n},'uom',this.value)">
+                    ${uomOptions(i.uom)}
+                </select>
+            </td>
+
+            <td>
+                <input type="number" min="0"
+                       value="${qty}"
+                       onblur="updateCalc(${n},'qty',this.value)">
+            </td>
+
+            <td>
+                <input type="number" min="0"
+                       value="${rate}"
+                       onblur="updateCalc(${n},'rate',this.value)">
+            </td>
+
+            <td>${amount.toFixed(2)}</td>
+
+            <td class="no-print">
+                <button onclick="deleteRow(${n})">X</button>
+            </td>`;
+        } else {
+            row.innerHTML = `
+            <td>${n+1}</td>
+
+            <td>
+                <input value="${i.desc}"
+                       onblur="updateSilent(${n},'desc',this.value)">
+            </td>
+
+            <td>
+                <select onchange="updateSilent(${n},'uom',this.value)">
+                    ${uomOptions(i.uom)}
+                </select>
+            </td>
+
+            <td>
+                <input type="number" min="0"
+                       value="${qty}"
+                       onblur="updateCalc(${n},'qty',this.value)">
+            </td>
+
+            <td class="no-print">
+                <button onclick="deleteRow(${n})">X</button>
+            </td>`;
+        }
+    });
+
+    grandTotal.innerText = totalAmount.toFixed(2);
+    if(document.getElementById("totalQty")){
+        document.getElementById("totalQty").innerText = totalQty;
+    }
+}
+
+/* ================== SWITCH INVOICE / CHALLAN ================== */
+function switchType(){
+    totalBox.style.display =
+        (docType.value === "invoice") ? "block" : "none";
+
+    qtyBox.style.display =
+        (docType.value === "challan") ? "block" : "none";
+
+    buildTable();
+}
+
+/* ================== SAVE DOCUMENT ================== */
+function saveDoc(){
+    let storageKey =
+        (docType.value === "invoice") ? "invoices" : "challans";
+
+    let list = JSON.parse(localStorage.getItem(storageKey)) || [];
+
+    let data = {
+        no: docNo.value,
+        date: docDate.value,
+        customer: {
+            name: cname.value,
+            mobile: cmobile.value,
+            address: caddress.value
+        },
+        items: items,
+        total: grandTotal.innerText,
+        type: docType.value
+    };
+
+    // EDIT MODE → UPDATE
+    if(editInfo && editInfo.type === storageKey){
+        list[editInfo.index] = data;
+        localStorage.removeItem("editDoc");
+        localStorage.removeItem("viewDoc");
+        editInfo = null;
+    }
+    // NEW SAVE
+    else{
+        list.push(data);
+        localStorage.setItem("counter", ++counter);
+        docNo.value = "AONE-" + counter;
+    }
+
+    localStorage.setItem(storageKey, JSON.stringify(list));
+    alert("Saved Successfully");
+}
+
+/* ================== OPEN MANAGER ================== */
+function openManager(){
+    window.open("manager.html", "_blank");
+}
+
+/* ================== INIT ================== */
+loadFromManager();
+buildTable();
+</script>
+
+
+
+</body>
+</html>
